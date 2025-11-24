@@ -288,6 +288,22 @@ You have a collection of tools available to assist with development and debuggin
 - `playwright`
   - **When to use:** For end-to-end testing of web applications. Use this tool to automate browser interactions and verify UI functionality. Can also be used for discovering documentation pages for third-party libraries.
 
+# Documentation References
+
+For detailed technical documentation, see:
+
+- **`specs/docs.md`** - Visual architecture diagrams (Mermaid), ER diagrams, state machines, API catalog
+- **`specs/SECURITY.md`** - Complete RBAC permission matrix (42 permissions × 7 roles), security patterns
+- **`specs/modules/`** - Detailed documentation for each compliance module:
+  - `drug-alcohol.md` - Drug testing workflows, MRO review, clearinghouse reporting
+  - `background-checks.md` - Screening, FCRA adjudication, adverse action
+  - `dot-compliance.md` - DQ files, FMCSA clearinghouse, hours of service
+  - `occupational-health.md` - Medical surveillance, OSHA 300, health records
+  - `training-certifications.md` - Certificate lifecycle, expiration alerts
+  - `geo-fencing.md` - PostGIS zones, GPS/QR check-ins, compliance mapping
+- **`frontend/CLAUDE.md`** - Next.js frontend patterns, RBAC enforcement in React
+- **`backend/CLAUDE.md`** - Django API patterns, authentication middleware, tenant isolation
+
 # Domain-Specific Guidance
 
 ## Compliance Terminology

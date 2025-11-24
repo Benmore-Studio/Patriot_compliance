@@ -439,9 +439,246 @@ You have access to these tools for development:
 - Certifications show expiration status with 30/60/90-day warnings
 - Geofence check-ins must be within location coordinates
 
+# RBAC Enforcement Patterns
+
+## Protected Route Usage
+
+```typescript
+// components/auth/protected-route.tsx
+import { useAuth } from '@/hooks/use-auth'
+import { hasPermission, Permission, Role } from '@/lib/rbac/permissions'
+
+interface ProtectedRouteProps {
+  children: React.ReactNode
+  allowedRoles?: Role[]
+  requiredPermissions?: Permission[]
+  anyPermission?: Permission[]
+  fallback?: React.ReactNode
+}
+
+export function ProtectedRoute({
+  children,
+  allowedRoles,
+  requiredPermissions,
+  anyPermission,
+  fallback = <Forbidden403 />
+}: ProtectedRouteProps) {
+  const { user, isLoading } = useAuth()
+
+  if (isLoading) return <LoadingSkeleton />
+  if (!user) return <RedirectToLogin />
+
+  // Check role restriction
+  if (allowedRoles && !allowedRoles.includes(user.role)) {
+    return fallback
+  }
+
+  // Check all required permissions
+  if (requiredPermissions) {
+    const hasAll = requiredPermissions.every(p =>
+      hasPermission(user.role, p)
+    )
+    if (!hasAll) return fallback
+  }
+
+  // Check any permission
+  if (anyPermission) {
+    const hasAny = anyPermission.some(p =>
+      hasPermission(user.role, p)
+    )
+    if (!hasAny) return fallback
+  }
+
+  return <>{children}</>
+}
+
+// Usage in page:
+export default function DrugTestingPage() {
+  return (
+    <ProtectedRoute
+      requiredPermissions={['drug-testing:read']}
+      allowedRoles={['super_admin', 'system_admin', 'der', 'safety_manager', 'compliance_officer']}
+    >
+      <DrugTestingDashboard />
+    </ProtectedRoute>
+  )
+}
+```
+
+## Permission Checking in Components
+
+```typescript
+// hooks/use-rbac.ts
+import { useAuth } from '@/hooks/use-auth'
+import { hasPermission, hasAnyPermission, Permission, Role } from '@/lib/rbac/permissions'
+
+export function useRBAC() {
+  const { user } = useAuth()
+
+  const can = (permission: Permission): boolean => {
+    if (!user) return false
+    return hasPermission(user.role, permission)
+  }
+
+  const canAny = (permissions: Permission[]): boolean => {
+    if (!user) return false
+    return hasAnyPermission(user.role, permissions)
+  }
+
+  const canAll = (permissions: Permission[]): boolean => {
+    if (!user) return false
+    return permissions.every(p => hasPermission(user.role, p))
+  }
+
+  const isRole = (role: Role): boolean => {
+    return user?.role === role
+  }
+
+  const isAnyRole = (roles: Role[]): boolean => {
+    return user ? roles.includes(user.role) : false
+  }
+
+  return { can, canAny, canAll, isRole, isAnyRole, user }
+}
+
+// Usage in component:
+export function EmployeeActions({ employee }: { employee: Employee }) {
+  const { can } = useRBAC()
+
+  return (
+    <div className="flex gap-2">
+      {can('employees:read') && (
+        <Button variant="outline" onClick={() => viewEmployee(employee.id)}>
+          View
+        </Button>
+      )}
+      {can('employees:write') && (
+        <Button variant="outline" onClick={() => editEmployee(employee.id)}>
+          Edit
+        </Button>
+      )}
+      {can('employees:delete') && (
+        <Button variant="destructive" onClick={() => deleteEmployee(employee.id)}>
+          Delete
+        </Button>
+      )}
+      {can('employees:export') && (
+        <Button variant="outline" onClick={() => exportEmployee(employee.id)}>
+          Export
+        </Button>
+      )}
+    </div>
+  )
+}
+```
+
+## Portal-Specific Component Loading
+
+```typescript
+// Different portals load different component sets
+
+// Service Company Portal (/)
+// Full CRUD components for all modules
+import { EmployeeRoster } from '@/components/employee/roster-full'
+import { ComplianceDashboard } from '@/components/dashboard/compliance-full'
+
+// PCS Pass Portal (/portals/pcs-pass)
+// Own-data-only components
+import { MyComplianceStatus } from '@/components/pcs-pass/my-status'
+import { MyDocuments } from '@/components/pcs-pass/my-documents'
+
+// Auditor Portal (/portals/auditor)
+// Read-only evidence components
+import { EvidenceViewer } from '@/components/auditor/evidence-viewer'
+import { AuditTrailExport } from '@/components/auditor/audit-trail'
+
+// Executive Portal (/portals/executive)
+// Analytics dashboards only
+import { ExecutiveKPIs } from '@/components/executive/kpis'
+import { PortfolioAnalytics } from '@/components/executive/analytics'
+```
+
+## Conditional Rendering Patterns
+
+```typescript
+// Pattern 1: Simple permission check
+{can('employees:write') && <EditButton />}
+
+// Pattern 2: Permission with fallback
+{can('billing:read') ? <BillingPanel /> : <UpgradePrompt />}
+
+// Pattern 3: Multiple permission options
+{canAny(['employees:write', 'employees:delete']) && (
+  <DropdownMenu>
+    {can('employees:write') && <MenuItem>Edit</MenuItem>}
+    {can('employees:delete') && <MenuItem>Delete</MenuItem>}
+  </DropdownMenu>
+)}
+
+// Pattern 4: Role-based UI variants
+{isRole('field_worker') ? (
+  <MobileOptimizedView />
+) : (
+  <DesktopDashboard />
+)}
+
+// Pattern 5: Mask sensitive data by role
+<span>
+  SSN: {can('employees:read') ? employee.ssn : '***-**-' + employee.ssn.slice(-4)}
+</span>
+```
+
+## API Client with Auth
+
+```typescript
+// lib/api-client.ts
+import { useAuth } from '@/hooks/use-auth'
+
+export function useApiClient() {
+  const { getAccessToken, tenantId } = useAuth()
+
+  const fetcher = async <T>(
+    endpoint: string,
+    options: RequestInit = {}
+  ): Promise<T> => {
+    const token = await getAccessToken()
+
+    const response = await fetch(`/api${endpoint}`, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+        'X-Tenant-ID': tenantId,
+        ...options.headers
+      }
+    })
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        // Token expired, redirect to login
+        window.location.href = '/login'
+      }
+      if (response.status === 403) {
+        throw new Error('Permission denied')
+      }
+      throw new Error(`API error: ${response.status}`)
+    }
+
+    return response.json()
+  }
+
+  return { fetcher }
+}
+
+// Usage:
+const { fetcher } = useApiClient()
+const employees = await fetcher<Employee[]>('/employees')
+```
+
 # Updates to This Document
 
 - Keep architecture synchronized with actual project structure
 - Document new page groups and components as they're added
 - Update technology stack when major dependencies change
 - Keep compliance terminology aligned with business requirements
+- Update RBAC patterns when new permissions are added
