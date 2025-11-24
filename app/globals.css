@@ -1,0 +1,238 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+@custom-variant chevron (&:is(.chevron-theme *));
+
+:root {
+  --background: oklch(1 0 0); /* Pure white */
+  --foreground: oklch(0.2 0 0); /* Dark gray for text */
+  --card: oklch(1 0 0); /* White cards */
+  --card-foreground: oklch(0.2 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0 0);
+  --primary: oklch(0.5 0.15 250); /* Blue #0066CC */
+  --primary-foreground: oklch(1 0 0); /* White text on blue */
+  --secondary: oklch(0.96 0 0); /* Light gray */
+  --secondary-foreground: oklch(0.2 0 0);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+  --accent: oklch(0.96 0 0);
+  --accent-foreground: oklch(0.2 0 0);
+  --destructive: oklch(0.577 0.245 27.325); /* Red for errors */
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0 0); /* Light gray borders */
+  --input: oklch(0.9 0 0);
+  --ring: oklch(0.5 0.15 250); /* Blue focus ring */
+  --chart-1: oklch(0.5 0.15 250); /* Blue */
+  --chart-2: oklch(0.6 0.15 150); /* Green */
+  --chart-3: oklch(0.6 0.15 50); /* Yellow */
+  --chart-4: oklch(0.6 0.15 30); /* Orange */
+  --chart-5: oklch(0.5 0.15 280); /* Purple */
+  --radius: 0.5rem;
+
+  /* Blue sidebar for light mode */
+  --sidebar: oklch(0.5 0.2 250); /* Blue #2563eb */
+  --sidebar-foreground: oklch(1 0 0); /* White text */
+  --sidebar-primary: oklch(0.45 0.2 250); /* Darker blue #1e40af */
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.55 0.2 250); /* Lighter blue #3b82f6 */
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.45 0.2 250); /* Dark blue border #1d4ed8 */
+  --sidebar-ring: oklch(0.5 0.2 250);
+}
+
+.dark {
+  /* Dark mode with improved contrast - dark gray backgrounds, not pure black */
+  --background: oklch(0.15 0 0); /* Dark gray #111827 */
+  --foreground: oklch(0.98 0 0); /* Almost white #f9fafb */
+  --card: oklch(0.18 0 0); /* Slightly lighter gray #1f2937 */
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.18 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.55 0.2 250); /* Bright blue #3b82f6 */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.25 0 0); /* Medium gray #374151 */
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.25 0 0);
+  --muted-foreground: oklch(0.65 0 0); /* Light gray #9ca3af */
+  --accent: oklch(0.5 0.2 250); /* Blue accent #2563eb */
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.5 0.2 30); /* Red */
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.25 0 0); /* Gray border #374151 */
+  --input: oklch(0.25 0 0);
+  --ring: oklch(0.5 0.2 250);
+  --chart-1: oklch(0.55 0.2 250); /* Blue */
+  --chart-2: oklch(0.65 0.15 150); /* Green */
+  --chart-3: oklch(0.75 0.15 80); /* Yellow */
+  --chart-4: oklch(0.6 0.2 30); /* Orange */
+  --chart-5: oklch(0.6 0.2 280); /* Purple */
+
+  /* Dark blue sidebar for dark mode, not black */
+  --sidebar: oklch(0.25 0.15 250); /* Dark blue #1e3a8a */
+  --sidebar-foreground: oklch(0.92 0 0); /* Light gray #e5e7eb */
+  --sidebar-primary: oklch(0.55 0.2 250); /* Bright blue #3b82f6 */
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.5 0.2 250); /* Blue accent #2563eb */
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.3 0.15 250); /* Dark navy border #1e40af */
+  --sidebar-ring: oklch(0.5 0.2 250);
+}
+
+/* Enhanced Chevron theme with comprehensive color changes for all UI elements */
+.chevron-theme {
+  /* Chevron brand colors: Dark Blue #003087, Light Blue #00A3E0, Red #C8102E */
+  --primary: oklch(0.35 0.15 250); /* Chevron Dark Blue #003087 */
+  --primary-foreground: oklch(1 0 0);
+  --accent: oklch(0.6 0.2 220); /* Chevron Light Blue #00A3E0 */
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.5 0.25 20); /* Chevron Red #C8102E */
+  --destructive-foreground: oklch(1 0 0);
+  --ring: oklch(0.35 0.15 250);
+
+  /* Card and border colors with Chevron blue tint */
+  --card: oklch(0.99 0.01 220); /* Slight blue tint to cards */
+  --border: oklch(0.85 0.05 220); /* Chevron blue borders */
+  --input: oklch(0.95 0.02 220); /* Chevron blue tinted inputs */
+
+  /* Chevron-themed sidebar */
+  --sidebar: oklch(0.35 0.15 250); /* Chevron Dark Blue */
+  --sidebar-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(0.3 0.15 250); /* Darker Chevron Blue */
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.6 0.2 220); /* Chevron Light Blue */
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.3 0.15 250);
+  --sidebar-ring: oklch(0.35 0.15 250);
+
+  /* Chevron chart colors */
+  --chart-1: oklch(0.35 0.15 250); /* Dark Blue */
+  --chart-2: oklch(0.6 0.2 220); /* Light Blue */
+  --chart-3: oklch(0.5 0.25 20); /* Red */
+  --chart-4: oklch(0.45 0.15 250); /* Medium Blue */
+  --chart-5: oklch(0.7 0.15 220); /* Lighter Blue */
+}
+
+.chevron-theme.dark {
+  /* Chevron theme in dark mode */
+  --background: oklch(0.15 0 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.18 0.02 220); /* Dark cards with blue tint */
+  --card-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.6 0.2 220); /* Brighter Chevron Blue for dark mode */
+  --primary-foreground: oklch(1 0 0);
+  --accent: oklch(0.65 0.2 220); /* Lighter Chevron Blue */
+  --accent-foreground: oklch(0.1 0 0);
+  --border: oklch(0.3 0.05 220); /* Dark blue borders */
+  --input: oklch(0.25 0.02 220);
+
+  --sidebar: oklch(0.2 0.15 250); /* Dark Chevron Blue */
+  --sidebar-foreground: oklch(0.92 0 0);
+  --sidebar-primary: oklch(0.6 0.2 220); /* Bright Chevron Blue */
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.65 0.2 220);
+  --sidebar-accent-foreground: oklch(1 0 0);
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Corrected theme mapping for Tailwind CSS v4 */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    letter-spacing: -0.011em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Comprehensive Chevron theme styling for all text elements and UI components */
+  .chevron-theme h1,
+  .chevron-theme h2,
+  .chevron-theme h3,
+  .chevron-theme h4 {
+    @apply text-primary font-bold;
+  }
+
+  .chevron-theme .text-2xl,
+  .chevron-theme .text-3xl,
+  .chevron-theme .text-4xl,
+  .chevron-theme .text-xl {
+    @apply text-primary font-bold;
+  }
+
+  /* Apply Chevron colors to cards and borders */
+  .chevron-theme [class*="border"] {
+    @apply border-primary/20;
+  }
+
+  .chevron-theme .bg-card {
+    @apply bg-card;
+  }
+
+  /* Apply Chevron accent color to badges and status indicators */
+  .chevron-theme .bg-blue-50,
+  .chevron-theme .bg-blue-100 {
+    @apply bg-accent/10;
+  }
+
+  .chevron-theme .text-blue-600,
+  .chevron-theme .text-blue-700 {
+    @apply text-primary;
+  }
+
+  /* Apply Chevron colors to buttons */
+  .chevron-theme button[class*="bg-blue"] {
+    @apply bg-primary hover:bg-primary/90;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

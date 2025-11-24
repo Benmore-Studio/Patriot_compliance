@@ -1,0 +1,393 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Multi-tenancy: Each service company has its own schema
+model Tenant {
+  id        String   @id @default(cuid())
+  name      String
+  schema    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("tenants")
+}
+
+// Users and Authentication
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String?
+  firstName     String
+  lastName      String
+  role          UserRole
+  tenantId      String
+  isActive      Boolean   @default(true)
+  lastLoginAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  auditLogs     AuditLog[]
+  
+  @@map("users")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  EXECUTIVE
+  COMPLIANCE_OFFICER
+  SERVICE_COMPANY_ADMIN
+  SERVICE_COMPANY_USER
+  FIELD_WORKER
+  AUDITOR
+}
+
+// Employees
+model Employee {
+  id                String    @id @default(cuid())
+  tenantId          String
+  firstName         String
+  lastName          String
+  email             String?
+  phone             String?
+  ssn               String?   // Encrypted
+  dateOfBirth       DateTime?
+  hireDate          DateTime?
+  terminationDate   DateTime?
+  status            EmployeeStatus @default(ACTIVE)
+  jobTitle          String?
+  department        String?
+  location          String?
+  complianceData    Json      // JSONB for flexible compliance data
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  drugTests         DrugTest[]
+  backgroundChecks  BackgroundCheck[]
+  dotRecords        DOTRecord[]
+  healthRecords     HealthRecord[]
+  trainingRecords   TrainingRecord[]
+  
+  @@map("employees")
+}
+
+enum EmployeeStatus {
+  ACTIVE
+  INACTIVE
+  TERMINATED
+  ON_LEAVE
+}
+
+// Drug & Alcohol Testing
+model DrugTest {
+  id                String    @id @default(cuid())
+  tenantId          String
+  employeeId        String
+  testType          DrugTestType
+  testDate          DateTime
+  collectionSite    String?
+  donorId           String?
+  specimenId        String?
+  result            TestResult?
+  mroReviewStatus   MROStatus?
+  mroReviewDate     DateTime?
+  mroNotes          String?
+  vendorId          String?   // CRL, Quest, etc.
+  vendorTestId      String?
+  clearinghouseReported Boolean @default(false)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  employee          Employee  @relation(fields: [employeeId], references: [id])
+  
+  @@map("drug_tests")
+}
+
+enum DrugTestType {
+  PRE_EMPLOYMENT
+  RANDOM
+  POST_ACCIDENT
+  REASONABLE_SUSPICION
+  RETURN_TO_DUTY
+  FOLLOW_UP
+}
+
+enum TestResult {
+  NEGATIVE
+  POSITIVE
+  DILUTE
+  INVALID
+  CANCELLED
+  PENDING
+}
+
+enum MROStatus {
+  PENDING_REVIEW
+  VERIFIED_NEGATIVE
+  VERIFIED_POSITIVE
+  TEST_CANCELLED
+}
+
+// Background Checks
+model BackgroundCheck {
+  id                String    @id @default(cuid())
+  tenantId          String
+  employeeId        String
+  orderDate         DateTime
+  completionDate    DateTime?
+  status            BackgroundCheckStatus
+  screeningTypes    String[]  // Array of screening types
+  overallResult     String?
+  adjudicationStatus AdjudicationStatus?
+  adjudicationDate  DateTime?
+  adjudicationNotes String?
+  vendorId          String?   // TazWorks
+  vendorOrderId     String?
+  continuousMonitoring Boolean @default(false)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  employee          Employee  @relation(fields: [employeeId], references: [id])
+  
+  @@map("background_checks")
+}
+
+enum BackgroundCheckStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum AdjudicationStatus {
+  PENDING
+  APPROVED
+  DENIED
+  CONDITIONAL
+}
+
+// DOT Compliance
+model DOTRecord {
+  id                String    @id @default(cuid())
+  tenantId          String
+  employeeId        String
+  driverLicenseNumber String?
+  driverLicenseState  String?
+  driverLicenseExpiry DateTime?
+  medicalCertExpiry   DateTime?
+  medicalCertStatus   String?
+  clearinghouseConsent Boolean @default(false)
+  clearinghouseLastQuery DateTime?
+  dqFileUrl         String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  employee          Employee  @relation(fields: [employeeId], references: [id])
+  documents         DOTDocument[]
+  
+  @@map("dot_records")
+}
+
+model DOTDocument {
+  id                String    @id @default(cuid())
+  tenantId          String
+  dotRecordId       String
+  documentType      DOTDocumentType
+  fileName          String
+  fileUrl           String
+  uploadDate        DateTime  @default(now())
+  expiryDate        DateTime?
+  status            String?
+  ocrData           Json?     // OCR extracted data
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  dotRecord         DOTRecord @relation(fields: [dotRecordId], references: [id])
+  
+  @@map("dot_documents")
+}
+
+enum DOTDocumentType {
+  DRIVER_APPLICATION
+  MOTOR_VEHICLE_RECORD
+  ROAD_TEST
+  MEDICAL_CERTIFICATE
+  PREVIOUS_EMPLOYER_VERIFICATION
+  ANNUAL_REVIEW
+  CLEARINGHOUSE_QUERY
+  VIOLATION_RECORD
+}
+
+// Occupational Health
+model HealthRecord {
+  id                String    @id @default(cuid())
+  tenantId          String
+  employeeId        String
+  recordType        HealthRecordType
+  recordDate        DateTime
+  provider          String?
+  result            String?
+  workAccommodations String?
+  expiryDate        DateTime?
+  vendorId          String?   // Quest
+  vendorRecordId    String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  employee          Employee  @relation(fields: [employeeId], references: [id])
+  
+  @@map("health_records")
+}
+
+enum HealthRecordType {
+  PHYSICAL_EXAM
+  HEARING_TEST
+  RESPIRATOR_FIT_TEST
+  IMMUNIZATION
+  DRUG_SCREEN
+  INJURY_REPORT
+}
+
+// Training & Certifications
+model TrainingRecord {
+  id                String    @id @default(cuid())
+  tenantId          String
+  employeeId        String
+  certificateType   String
+  certificateNumber String?
+  issueDate         DateTime
+  expiryDate        DateTime?
+  issuingAuthority  String?
+  fileUrl           String?
+  ocrData           Json?     // OCR extracted data
+  status            CertificateStatus
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  employee          Employee  @relation(fields: [employeeId], references: [id])
+  
+  @@map("training_records")
+}
+
+enum CertificateStatus {
+  ACTIVE
+  EXPIRED
+  EXPIRING_SOON
+  REVOKED
+}
+
+// Audit Logging
+model AuditLog {
+  id                String    @id @default(cuid())
+  tenantId          String
+  userId            String
+  action            String
+  resource          String
+  resourceId        String?
+  details           Json?
+  ipAddress         String?
+  userAgent         String?
+  result            String?   // SUCCESS, FAILURE
+  createdAt         DateTime  @default(now())
+
+  user              User      @relation(fields: [userId], references: [id])
+  
+  @@map("audit_logs")
+}
+
+// Shareable Links
+model ShareableLink {
+  id                String    @id @default(cuid())
+  tenantId          String
+  token             String    @unique
+  resourceType      String
+  resourceId        String
+  passwordHash      String
+  expiresAt         DateTime
+  oneTimeUse        Boolean   @default(false)
+  accessCount       Int       @default(0)
+  lastAccessedAt    DateTime?
+  lastAccessedIp    String?
+  createdBy         String
+  createdAt         DateTime  @default(now())
+  
+  @@map("shareable_links")
+}
+
+// Geo-Fencing
+model GeoFenceZone {
+  id                String    @id @default(cuid())
+  tenantId          String
+  name              String
+  type              ZoneType
+  coordinates       Json      // GeoJSON for PostGIS
+  complianceRequirements Json
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  checkIns          CheckIn[]
+  
+  @@map("geo_fence_zones")
+}
+
+enum ZoneType {
+  STATE
+  COUNTY
+  CITY
+  SITE
+}
+
+model CheckIn {
+  id                String    @id @default(cuid())
+  tenantId          String
+  employeeId        String
+  zoneId            String
+  checkInTime       DateTime  @default(now())
+  checkOutTime      DateTime?
+  latitude          Float
+  longitude         Float
+  method            CheckInMethod
+  createdAt         DateTime  @default(now())
+
+  zone              GeoFenceZone @relation(fields: [zoneId], references: [id])
+  
+  @@map("check_ins")
+}
+
+enum CheckInMethod {
+  GPS
+  QR_CODE
+  MANUAL
+}
+
+// Communications
+model Communication {
+  id                String    @id @default(cuid())
+  tenantId          String
+  subject           String
+  message           String
+  channels          String[]  // EMAIL, SMS, PUSH
+  priority          Priority
+  scheduledFor      DateTime?
+  sentAt            DateTime?
+  recipientCount    Int       @default(0)
+  deliveredCount    Int       @default(0)
+  readCount         Int       @default(0)
+  failedCount       Int       @default(0)
+  createdBy         String
+  createdAt         DateTime  @default(now())
+  
+  @@map("communications")
+}
+
+enum Priority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}
