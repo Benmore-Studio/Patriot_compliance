@@ -118,6 +118,7 @@ flowchart TB
 ```
 
 **All 6 compliance modules follow this identical pattern:**
+
 - Drug & Alcohol Testing
 - Background Screening
 - DOT Driver Qualification
@@ -283,75 +284,76 @@ erDiagram
 
 ### 3.2 Complete Permission Matrix (42 Permissions × 7 Roles)
 
-| Permission | super_admin | system_admin | der | safety_manager | compliance_officer | field_worker | auditor |
-|:-----------|:-----------:|:------------:|:---:|:--------------:|:------------------:|:------------:|:-------:|
-| **Dashboard** |
-| dashboard:read | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| dashboard:write | ✓ | ✓ | ✓ | - | - | - | - |
-| **Employees** |
-| employees:read | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| employees:write | ✓ | ✓ | ✓ | ✓ | - | - | - |
-| employees:delete | ✓ | ✓ | - | - | - | - | - |
-| employees:export | ✓ | ✓ | ✓ | ✓ | - | - | - |
-| employees:own | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **Drug Testing** |
-| drug-testing:read | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| drug-testing:write | ✓ | ✓ | ✓ | ✓ | ✓ | - | - |
-| drug-testing:delete | ✓ | ✓ | - | - | - | - | - |
-| drug-testing:export | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| drug-testing:own | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **Background Checks** |
-| background:read | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| background:write | ✓ | ✓ | ✓ | - | ✓ | - | - |
-| background:delete | ✓ | ✓ | - | - | - | - | - |
-| background:export | ✓ | ✓ | ✓ | - | ✓ | - | - |
-| background:own | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **DOT Compliance** |
-| dot:read | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| dot:write | ✓ | ✓ | ✓ | - | ✓ | - | - |
-| dot:delete | ✓ | ✓ | - | - | - | - | - |
-| dot:export | ✓ | ✓ | ✓ | - | ✓ | - | ✓ |
-| dot:own | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **Occupational Health** |
-| health:read | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| health:write | ✓ | ✓ | ✓ | ✓ | - | - | - |
-| health:delete | ✓ | ✓ | - | - | - | - | - |
-| health:export | ✓ | ✓ | ✓ | ✓ | - | - | ✓ |
-| health:own | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Permission                    | super_admin | system_admin | der | safety_manager | compliance_officer | field_worker | auditor |
+| :---------------------------- | :---------: | :----------: | :-: | :------------: | :----------------: | :----------: | :-----: |
+| **Dashboard**                 |
+| dashboard:read                |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      ✓       |    ✓    |
+| dashboard:write               |      ✓      |      ✓       |  ✓  |       -        |         -          |      -       |    -    |
+| **Employees**                 |
+| employees:read                |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      -       |    ✓    |
+| employees:write               |      ✓      |      ✓       |  ✓  |       ✓        |         -          |      -       |    -    |
+| employees:delete              |      ✓      |      ✓       |  -  |       -        |         -          |      -       |    -    |
+| employees:export              |      ✓      |      ✓       |  ✓  |       ✓        |         -          |      -       |    -    |
+| employees:own                 |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      ✓       |    ✓    |
+| **Drug Testing**              |
+| drug-testing:read             |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      -       |    ✓    |
+| drug-testing:write            |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      -       |    -    |
+| drug-testing:delete           |      ✓      |      ✓       |  -  |       -        |         -          |      -       |    -    |
+| drug-testing:export           |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      -       |    ✓    |
+| drug-testing:own              |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      ✓       |    ✓    |
+| **Background Checks**         |
+| background:read               |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      -       |    ✓    |
+| background:write              |      ✓      |      ✓       |  ✓  |       -        |         ✓          |      -       |    -    |
+| background:delete             |      ✓      |      ✓       |  -  |       -        |         -          |      -       |    -    |
+| background:export             |      ✓      |      ✓       |  ✓  |       -        |         ✓          |      -       |    -    |
+| background:own                |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      ✓       |    ✓    |
+| **DOT Compliance**            |
+| dot:read                      |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      -       |    ✓    |
+| dot:write                     |      ✓      |      ✓       |  ✓  |       -        |         ✓          |      -       |    -    |
+| dot:delete                    |      ✓      |      ✓       |  -  |       -        |         -          |      -       |    -    |
+| dot:export                    |      ✓      |      ✓       |  ✓  |       -        |         ✓          |      -       |    ✓    |
+| dot:own                       |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      ✓       |    ✓    |
+| **Occupational Health**       |
+| health:read                   |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      -       |    ✓    |
+| health:write                  |      ✓      |      ✓       |  ✓  |       ✓        |         -          |      -       |    -    |
+| health:delete                 |      ✓      |      ✓       |  -  |       -        |         -          |      -       |    -    |
+| health:export                 |      ✓      |      ✓       |  ✓  |       ✓        |         -          |      -       |    ✓    |
+| health:own                    |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      ✓       |    ✓    |
 | **Training & Certifications** |
-| training:read | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| training:write | ✓ | ✓ | ✓ | ✓ | - | - | - |
-| training:delete | ✓ | ✓ | - | - | - | - | - |
-| training:export | ✓ | ✓ | ✓ | ✓ | - | - | ✓ |
-| training:own | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **Billing** |
-| billing:read | ✓ | ✓ | ✓ | - | - | - | - |
-| billing:write | ✓ | ✓ | - | - | - | - | - |
-| billing:delete | ✓ | - | - | - | - | - | - |
-| billing:export | ✓ | - | - | - | - | - | - |
-| **Policy Driver** |
-| policy-driver:read | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| policy-driver:write | ✓ | ✓ | ✓ | - | - | - | - |
-| **Audit Logs** |
-| audit-logs:read | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| **Settings** |
-| settings:read | ✓ | ✓ | ✓ | - | - | - | - |
-| settings:write | ✓ | ✓ | - | - | - | - | - |
+| training:read                 |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      -       |    ✓    |
+| training:write                |      ✓      |      ✓       |  ✓  |       ✓        |         -          |      -       |    -    |
+| training:delete               |      ✓      |      ✓       |  -  |       -        |         -          |      -       |    -    |
+| training:export               |      ✓      |      ✓       |  ✓  |       ✓        |         -          |      -       |    ✓    |
+| training:own                  |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      ✓       |    ✓    |
+| **Billing**                   |
+| billing:read                  |      ✓      |      ✓       |  ✓  |       -        |         -          |      -       |    -    |
+| billing:write                 |      ✓      |      ✓       |  -  |       -        |         -          |      -       |    -    |
+| billing:delete                |      ✓      |      -       |  -  |       -        |         -          |      -       |    -    |
+| billing:export                |      ✓      |      -       |  -  |       -        |         -          |      -       |    -    |
+| **Policy Driver**             |
+| policy-driver:read            |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      -       |    ✓    |
+| policy-driver:write           |      ✓      |      ✓       |  ✓  |       -        |         -          |      -       |    -    |
+| **Audit Logs**                |
+| audit-logs:read               |      ✓      |      ✓       |  ✓  |       ✓        |         ✓          |      -       |    ✓    |
+| **Settings**                  |
+| settings:read                 |      ✓      |      ✓       |  ✓  |       -        |         -          |      -       |    -    |
+| settings:write                |      ✓      |      ✓       |  -  |       -        |         -          |      -       |    -    |
 
 **Permission Legend:**
+
 - ✓ = Full access
 - `-` = No access
 - `:own` = Access to own records only (self-service)
 
 ### 3.3 Portal Access Matrix
 
-| Portal | super_admin | system_admin | der | safety_manager | compliance_officer | field_worker | auditor |
-|:-------|:-----------:|:------------:|:---:|:--------------:|:------------------:|:------------:|:-------:|
-| Service Company (/) | ✓ | ✓ | ✓ | ✓ | - | - | - |
-| Compliance Portal | ✓ | - | - | - | ✓ | - | - |
-| PCS Pass | - | - | - | - | - | ✓ | - |
-| Auditor Portal | ✓ | - | - | - | - | - | ✓ |
-| Executive Portal | ✓ | ✓ | ✓ | - | - | - | - |
+| Portal              | super_admin | system_admin | der | safety_manager | compliance_officer | field_worker | auditor |
+| :------------------ | :---------: | :----------: | :-: | :------------: | :----------------: | :----------: | :-----: |
+| Service Company (/) |      ✓      |      ✓       |  ✓  |       ✓        |         -          |      -       |    -    |
+| Compliance Portal   |      ✓      |      -       |  -  |       -        |         ✓          |      -       |    -    |
+| PCS Pass            |      -      |      -       |  -  |       -        |         -          |      ✓       |    -    |
+| Auditor Portal      |      ✓      |      -       |  -  |       -        |         -          |      -       |    ✓    |
+| Executive Portal    |      ✓      |      ✓       |  ✓  |       -        |         -          |      -       |    -    |
 
 ---
 
@@ -499,48 +501,48 @@ flowchart TD
 
 ### 5.1 API Endpoints by Module (29 Total)
 
-| Module | Endpoint | Methods | Auth | Description |
-|:-------|:---------|:--------|:-----|:------------|
-| **Authentication** |
-| | `/api/auth/login` | POST | Public | Email + password login |
-| | `/api/auth/mfa` | POST | Session | MFA verification |
-| | `/api/auth/logout` | POST | JWT | Session termination |
-| **Employees** |
-| | `/api/employees` | GET, POST | JWT | List/create employees |
-| | `/api/employees/[id]` | GET, PATCH, DELETE | JWT | Single employee CRUD |
-| | `/api/employees/bulk-upload` | POST | JWT | Bulk CSV import |
-| | `/api/employees/export` | GET | JWT | Export to CSV/PDF |
-| **Drug Testing** |
-| | `/api/drug-testing/tests` | GET, POST | JWT | Test management |
-| | `/api/drug-testing/mro-review` | GET, POST | JWT | MRO review workflow |
-| | `/api/drug-testing/random-selection` | POST | JWT | Random pool selection |
-| | `/api/drug-testing/clearinghouse` | GET, POST | JWT | FMCSA reporting |
-| **Background Checks** |
-| | `/api/background/screenings` | GET, POST | JWT | Order screenings |
-| | `/api/background/adjudication` | GET, POST | JWT | Adjudication decisions |
-| | `/api/background/adverse-action` | GET, POST | JWT | Adverse action workflow |
-| **DOT Compliance** |
-| | `/api/dot/drivers` | GET, POST | JWT | Driver roster |
-| | `/api/dot/documents` | GET, POST | JWT | DQ file documents |
-| | `/api/dot/clearinghouse` | GET, POST | JWT | Clearinghouse queries |
+| Module                  | Endpoint                             | Methods            | Auth           | Description             |
+| :---------------------- | :----------------------------------- | :----------------- | :------------- | :---------------------- |
+| **Authentication**      |
+|                         | `/api/auth/login`                    | POST               | Public         | Email + password login  |
+|                         | `/api/auth/mfa`                      | POST               | Session        | MFA verification        |
+|                         | `/api/auth/logout`                   | POST               | JWT            | Session termination     |
+| **Employees**           |
+|                         | `/api/employees`                     | GET, POST          | JWT            | List/create employees   |
+|                         | `/api/employees/[id]`                | GET, PATCH, DELETE | JWT            | Single employee CRUD    |
+|                         | `/api/employees/bulk-upload`         | POST               | JWT            | Bulk CSV import         |
+|                         | `/api/employees/export`              | GET                | JWT            | Export to CSV/PDF       |
+| **Drug Testing**        |
+|                         | `/api/drug-testing/tests`            | GET, POST          | JWT            | Test management         |
+|                         | `/api/drug-testing/mro-review`       | GET, POST          | JWT            | MRO review workflow     |
+|                         | `/api/drug-testing/random-selection` | POST               | JWT            | Random pool selection   |
+|                         | `/api/drug-testing/clearinghouse`    | GET, POST          | JWT            | FMCSA reporting         |
+| **Background Checks**   |
+|                         | `/api/background/screenings`         | GET, POST          | JWT            | Order screenings        |
+|                         | `/api/background/adjudication`       | GET, POST          | JWT            | Adjudication decisions  |
+|                         | `/api/background/adverse-action`     | GET, POST          | JWT            | Adverse action workflow |
+| **DOT Compliance**      |
+|                         | `/api/dot/drivers`                   | GET, POST          | JWT            | Driver roster           |
+|                         | `/api/dot/documents`                 | GET, POST          | JWT            | DQ file documents       |
+|                         | `/api/dot/clearinghouse`             | GET, POST          | JWT            | Clearinghouse queries   |
 | **Occupational Health** |
-| | `/api/health/surveillance` | GET, POST | JWT | Health surveillance |
-| | `/api/health/osha-300` | GET, POST | JWT | OSHA 300 logging |
-| **Training** |
-| | `/api/training/certificates` | GET, POST | JWT | Certificate management |
-| | `/api/training/matrix` | GET | JWT | Training requirements |
-| **Geo-Fencing** |
-| | `/api/geo-fencing/zones` | GET, POST | JWT | Zone management |
-| | `/api/geo-fencing/check-in` | POST | JWT | Employee check-in |
-| | `/api/geo-fencing/triggers` | POST | JWT | Compliance triggers |
-| **Secure Sharing** |
-| | `/api/share/create` | POST | JWT | Create secure link |
-| | `/api/share/[token]` | POST, DELETE | Token+Password | Access/revoke link |
-| **Webhooks** |
-| | `/api/webhooks/tazworks` | POST | Signature | Background results |
-| | `/api/webhooks/drug-testing` | POST | Signature | Drug test results |
-| **AI Assistant** |
-| | `/api/der-iq/chat` | POST | JWT | DER IQ assistant |
+|                         | `/api/health/surveillance`           | GET, POST          | JWT            | Health surveillance     |
+|                         | `/api/health/osha-300`               | GET, POST          | JWT            | OSHA 300 logging        |
+| **Training**            |
+|                         | `/api/training/certificates`         | GET, POST          | JWT            | Certificate management  |
+|                         | `/api/training/matrix`               | GET                | JWT            | Training requirements   |
+| **Geo-Fencing**         |
+|                         | `/api/geo-fencing/zones`             | GET, POST          | JWT            | Zone management         |
+|                         | `/api/geo-fencing/check-in`          | POST               | JWT            | Employee check-in       |
+|                         | `/api/geo-fencing/triggers`          | POST               | JWT            | Compliance triggers     |
+| **Secure Sharing**      |
+|                         | `/api/share/create`                  | POST               | JWT            | Create secure link      |
+|                         | `/api/share/[token]`                 | POST, DELETE       | Token+Password | Access/revoke link      |
+| **Webhooks**            |
+|                         | `/api/webhooks/tazworks`             | POST               | Signature      | Background results      |
+|                         | `/api/webhooks/drug-testing`         | POST               | Signature      | Drug test results       |
+| **AI Assistant**        |
+|                         | `/api/der-iq/chat`                   | POST               | JWT            | DER IQ assistant        |
 
 ### 5.2 API Response Format
 
@@ -1168,36 +1170,36 @@ flowchart TB
 
 ### 8.2 Integration Details Table
 
-| Domain | Vendor | Type | Auth Method | Data Flow |
-|:-------|:-------|:-----|:------------|:----------|
-| **Identity** |
-| | ID.me | REST API | OAuth2 | Outbound verification |
-| | Okta/Azure AD | SAML/OIDC | Federation | SSO tokens |
-| | Twilio Verify | REST API | API Key | OTP delivery |
-| **Background** |
-| | TazWorks | REST + Webhook | API Key + Signature | Bidirectional |
-| | Accurate | REST + Webhook | API Key | Bidirectional |
-| **Drug Testing** |
-| | CRL Labs | ECCF Format | API Key | Webhook inbound |
-| | Quest Diagnostics | REST API | OAuth2 | Bidirectional |
-| | FormFox | REST API | API Key | Outbound orders |
+| Domain             | Vendor              | Type           | Auth Method         | Data Flow             |
+| :----------------- | :------------------ | :------------- | :------------------ | :-------------------- |
+| **Identity**       |
+|                    | ID.me               | REST API       | OAuth2              | Outbound verification |
+|                    | Okta/Azure AD       | SAML/OIDC      | Federation          | SSO tokens            |
+|                    | Twilio Verify       | REST API       | API Key             | OTP delivery          |
+| **Background**     |
+|                    | TazWorks            | REST + Webhook | API Key + Signature | Bidirectional         |
+|                    | Accurate            | REST + Webhook | API Key             | Bidirectional         |
+| **Drug Testing**   |
+|                    | CRL Labs            | ECCF Format    | API Key             | Webhook inbound       |
+|                    | Quest Diagnostics   | REST API       | OAuth2              | Bidirectional         |
+|                    | FormFox             | REST API       | API Key             | Outbound orders       |
 | **DOT/Government** |
-| | FMCSA Clearinghouse | REST API | DOT PIN | Queries + Reports |
-| | CDLIS | SOAP | State credentials | Outbound queries |
-| **Financial** |
-| | Stripe | REST + Webhook | API Key | Payments + Events |
-| | Plaid | REST API | API Key | Bank verification |
-| | QuickBooks | REST API | OAuth2 | Invoice sync |
+|                    | FMCSA Clearinghouse | REST API       | DOT PIN             | Queries + Reports     |
+|                    | CDLIS               | SOAP           | State credentials   | Outbound queries      |
+| **Financial**      |
+|                    | Stripe              | REST + Webhook | API Key             | Payments + Events     |
+|                    | Plaid               | REST API       | API Key             | Bank verification     |
+|                    | QuickBooks          | REST API       | OAuth2              | Invoice sync          |
 | **Communications** |
-| | SendGrid | REST API | API Key | Email delivery |
-| | Twilio SMS | REST API | Account SID | SMS delivery |
-| | Slack | REST API | OAuth2 | Alert webhooks |
-| **HRIS** |
-| | Workforce.com | REST + Webhook | OAuth2 | Employee sync |
-| | UKG | REST API | API Key | Employee sync |
-| **Storage** |
-| | AWS S3 | SDK | IAM Role | Document storage |
-| | AWS Textract | SDK | IAM Role | OCR processing |
+|                    | SendGrid            | REST API       | API Key             | Email delivery        |
+|                    | Twilio SMS          | REST API       | Account SID         | SMS delivery          |
+|                    | Slack               | REST API       | OAuth2              | Alert webhooks        |
+| **HRIS**           |
+|                    | Workforce.com       | REST + Webhook | OAuth2              | Employee sync         |
+|                    | UKG                 | REST API       | API Key             | Employee sync         |
+| **Storage**        |
+|                    | AWS S3              | SDK            | IAM Role            | Document storage      |
+|                    | AWS Textract        | SDK            | IAM Role            | OCR processing        |
 
 ---
 
@@ -1278,11 +1280,11 @@ flowchart TB
 
 ### 9.2 Infrastructure Cost Projections
 
-| Scale | Employees | Monthly Cost | Annual Cost |
-|:------|:----------|:-------------|:------------|
-| Startup | 0-10K | $1,320-2,335 | $16K-28K |
-| Growth | 10K-100K | $9,695-17,095 | $116K-205K |
-| Enterprise | 100K-1M | $34,730-59,430 | $417K-713K |
+| Scale      | Employees | Monthly Cost   | Annual Cost |
+| :--------- | :-------- | :------------- | :---------- |
+| Startup    | 0-10K     | $1,320-2,335   | $16K-28K    |
+| Growth     | 10K-100K  | $9,695-17,095  | $116K-205K  |
+| Enterprise | 100K-1M   | $34,730-59,430 | $417K-713K  |
 
 ---
 

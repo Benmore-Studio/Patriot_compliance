@@ -50,6 +50,7 @@ This directory contains comprehensive documentation for the Patriot Compliance S
 ## Technology Stack
 
 ### Frontend
+
 - **Next.js 14** - React framework with App Router
 - **React 19** - Latest React with concurrent features
 - **TypeScript 5** - Type-safe development
@@ -60,6 +61,7 @@ This directory contains comprehensive documentation for the Patriot Compliance S
 - **Recharts** - Data visualization
 
 ### Backend
+
 - **Django 4.2+** - Web framework with ORM
 - **Django REST Framework** - RESTful API development
 - **PostgreSQL 13+** - Multi-tenant database with schema isolation
@@ -72,11 +74,13 @@ This directory contains comprehensive documentation for the Patriot Compliance S
 ## Key Features
 
 ### Multi-Tenant Architecture
+
 - Each service company operates in isolated PostgreSQL schemas
 - Tenant middleware automatically routes requests to correct schema
 - Complete data isolation between tenants
 
 ### Role-Based Access Control
+
 - Service Company Admin
 - Compliance Officer
 - DER (Designated Employer Representative)
@@ -86,6 +90,7 @@ This directory contains comprehensive documentation for the Patriot Compliance S
 - Super Admin (PCS internal)
 
 ### Compliance Workflows
+
 - **Drug Testing**: Pre-employment, random, post-accident, MRO review, clearinghouse reporting
 - **Background Checks**: Screening, adjudication, adverse action processing
 - **DOT Compliance**: Driver qualification files, clearinghouse queries, medical certifications
@@ -161,8 +166,9 @@ Documentation is maintained in version control alongside code. When making chang
 ## Contact & Questions
 
 Refer to the specific CLAUDE.md files for development guidelines:
+
 - **Global development**: See CLAUDE.md
 - **Frontend questions**: See frontend/CLAUDE.md
 - **Backend questions**: See backend/CLAUDE.md
-- **Architecture/design**: See ARCHITECTURE_* files
+- **Architecture/design**: See ARCHITECTURE\_\* files
 - **Feature specs**: See COMPLIANCE_PORTAL_INSTRUCTIONS.md
