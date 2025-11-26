@@ -6,6 +6,8 @@ This directory contains comprehensive documentation for the Patriot Compliance S
 
 ### Documentation Files
 
+- **ARCHITECTURE_TECHNICAL.md** - System Overview with high-level architecture diagrams showing client layer, frontend layer (Vercel/Next.js), backend layer (Django/AWS), and data layer with vendor integrations
+- **ARCHITECTURE_TECHNICAL_V2.md** - Detailed v2.0 technical architecture with hybrid microservices pattern (4 services), technology stack, service definitions, data layer, and deployment architecture
 - **COMPLIANCE_PORTAL_INSTRUCTIONS.md** - Comprehensive development instructions for the full compliance portal, including design guidelines, authentication, RBAC, and feature specifications
 - **ARCHITECTURE_ASSESSMENT.md** - Current architecture assessment and technical evaluation
 - **ARCHITECTURE_REVIEW_REPORT.md** - Detailed architecture review with recommendations
