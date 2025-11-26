@@ -3,7 +3,8 @@
     "allow": [
       "Skill(superpowers:brainstorming)",
       "WebSearch",
-      "Skill(superpowers:using-superpowers)"
+      "Skill(superpowers:using-superpowers)",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []
