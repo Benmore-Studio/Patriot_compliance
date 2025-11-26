@@ -2,14 +2,45 @@
 
 This directory contains comprehensive documentation for the Patriot Compliance Systems project, organizing specifications, architecture, and implementation guides for both frontend and backend development.
 
-## Directory Structure
+**Target Compliance**: FedRAMP Moderate (long-term), SOC 2 Type II, PCI SAQ-A
+**Scale Target**: 10K → 1M users
+**Architecture**: Django + DRF (backend), Next.js 14 (frontend), PostgreSQL + Redis + Kafka
 
-### Documentation Files
+---
 
-- **COMPLIANCE_PORTAL_INSTRUCTIONS.md** - Comprehensive development instructions for the full compliance portal, including design guidelines, authentication, RBAC, and feature specifications
-- **ARCHITECTURE_ASSESSMENT.md** - Current architecture assessment and technical evaluation
-- **ARCHITECTURE_REVIEW_REPORT.md** - Detailed architecture review with recommendations
-- **users.md** - Portal architecture breakdown with user roles and access matrices
+## Architecture Specifications (Primary Reference)
+
+### Core Architecture (`architecture/`)
+- **[System Overview](./architecture/overview.md)** - C4 diagrams, system boundaries, ASCII architecture diagrams
+- **[Data Layer](./architecture/data-layer.md)** - PostgreSQL partitioning, Redis caching, Kafka event streaming, pgvector
+- **[API Layer](./architecture/api-layer.md)** - Django middleware stack, webhooks, idempotency, field masking
+- **[AI Gateway](./architecture/ai-gateway.md)** - DER IQ text-to-SQL, RAG with regulatory embeddings, RBAC-aware queries
+- **[Security Architecture](./architecture/security.md)** - Hybrid RBAC (11 roles), RLS policies, dual-control workflows, MFA
+- **[Infrastructure](./architecture/infrastructure.md)** - AWS ECS Fargate, Aurora PostgreSQL, Blue-Green deployment, DR
+
+### Compliance Modules (`modules/`)
+- **[Employee Lifecycle](./modules/employee-lifecycle.md)** - State machine, hybrid status + events model
+- **[Drug & Alcohol Testing](./modules/drug-alcohol.md)** - MRO review, clearinghouse reporting
+- **[Background Checks](./modules/background-checks.md)** - FCRA adjudication, adverse action
+- **[DOT Compliance](./modules/dot-compliance.md)** - DQ files, medical certificates, clearinghouse
+- **[Occupational Health](./modules/occupational-health.md)** - Medical surveillance, OSHA 300
+- **[Training & Certifications](./modules/training-certifications.md)** - Certificate tracking, 30/60/90-day alerts
+- **[Geo-Fencing](./modules/geo-fencing.md)** - PostGIS zones, GPS check-ins
+
+### Compliance & Security (`compliance/`)
+- **[RBAC Permissions Matrix](./compliance/rbac-permissions-matrix.md)** - 11 roles × 8 modules, dual-portal model
+- **[SOC 2 Controls](./compliance/soc2-controls.md)** - Trust Service Criteria, evidence collection
+- **[FedRAMP Roadmap](./compliance/fedramp-roadmap.md)** - 18-month path to FedRAMP Moderate ATO
+- **[PCI SAQ-A](./compliance/pci-saq-a.md)** - Minimal PCI compliance (Stripe tokens only)
+
+---
+
+## Legacy Documentation Files
+
+- **COMPLIANCE_PORTAL_INSTRUCTIONS.md** - Development instructions for the compliance portal
+- **ARCHITECTURE_ASSESSMENT.md** - Current architecture assessment
+- **ARCHITECTURE_REVIEW_REPORT.md** - Architecture review with recommendations
+- **users.md** - Portal architecture breakdown with user roles
 - **docs.md** - Technical documentation and API specifications
 - **PLANS.md** - Implementation plans and project timelines
 
