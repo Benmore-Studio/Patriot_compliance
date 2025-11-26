@@ -27,20 +27,20 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Permission Categories
 
-| Category | Permissions | Description |
-|----------|-------------|-------------|
-| **Core Resources** | 42 | Employees, Drug Testing, Background, DOT, Health, Training, Billing, Policy, Audit Logs, Settings |
-| **Security Controls** | 8 | Security controls, POAM, incidents, role assignments, vulnerability scans |
-| **MSP Operations** | 6 | Service companies, compliance portfolio, auditor accounts, company policies, MSP billing |
+| Category              | Permissions | Description                                                                                       |
+| --------------------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| **Core Resources**    | 42          | Employees, Drug Testing, Background, DOT, Health, Training, Billing, Policy, Audit Logs, Settings |
+| **Security Controls** | 8           | Security controls, POAM, incidents, role assignments, vulnerability scans                         |
+| **MSP Operations**    | 6           | Service companies, compliance portfolio, auditor accounts, company policies, MSP billing          |
 
 ### Role Categories
 
-| Category | Roles | Access Level |
-|----------|-------|--------------|
-| **Platform (PCS Internal)** | 3 | super_admin, pcs_security_officer, information_system_owner |
-| **Tenant Admin** | 2 | system_admin, compliance_company_admin |
-| **Operational** | 4 | der, safety_manager, compliance_officer, senior_auditor |
-| **Limited Access** | 3 | audit_manager, field_worker, auditor |
+| Category                    | Roles | Access Level                                                |
+| --------------------------- | ----- | ----------------------------------------------------------- |
+| **Platform (PCS Internal)** | 3     | super_admin, pcs_security_officer, information_system_owner |
+| **Tenant Admin**            | 2     | system_admin, compliance_company_admin                      |
+| **Operational**             | 4     | der, safety_manager, compliance_officer, senior_auditor     |
+| **Limited Access**          | 3     | audit_manager, field_worker, auditor                        |
 
 ---
 
@@ -49,19 +49,19 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 ### Legend
 
 - ✓ = Full access
-- ✓* = Requires dual control approval (exports with PII/PHI)
-- ✓** = Draft only (cannot activate)
-- ✓*** = Need-to-know justification required
+- ✓\* = Requires dual control approval (exports with PII/PHI)
+- ✓\*\* = Draft only (cannot activate)
+- ✓\*\*\* = Need-to-know justification required
 - `-` = No access
 
 ---
 
 ### Dashboard Permissions (2)
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `dashboard:read` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `dashboard:write` | ✓ | ✓ | - | ✓ | ✓ | ✓ | - | - | - | - | - | - |
+| Permission        | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :---------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `dashboard:read`  |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      ✓       |    ✓    |
+| `dashboard:write` |      ✓      |          ✓           |            -             |      ✓       |            ✓             |  ✓  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Total per role:** SA:2, PSO:2, ISO:1, SysAdmin:2, CCA:2, DER:2, SM:1, CO:1, SenAud:1, AM:1, FW:1, Aud:1
 
@@ -69,17 +69,18 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Employee Permissions (5)
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `employees:read` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| `employees:write` | ✓ | - | - | ✓ | - | ✓ | ✓ | - | - | - | - | - |
-| `employees:delete` | ✓ | - | ✓ | ✓ | - | - | - | - | - | - | - | - |
-| `employees:export` | ✓ | - | - | ✓ | ✓ | ✓ | ✓ | - | ✓* | ✓* | - | - |
-| `employees:own` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Permission         | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :----------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `employees:read`   |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      -       |    ✓    |
+| `employees:write`  |      ✓      |          -           |            -             |      ✓       |            -             |  ✓  |       ✓        |         -          |       -        |       -       |      -       |    -    |
+| `employees:delete` |      ✓      |          -           |            ✓             |      ✓       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `employees:export` |      ✓      |          -           |            -             |      ✓       |            ✓             |  ✓  |       ✓        |         -          |      ✓\*       |      ✓\*      |      -       |    -    |
+| `employees:own`    |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      ✓       |    ✓    |
 
 **Notes:**
+
 - `employees:own` allows viewing/updating ONLY own employee record (self-service)
-- `employees:export` with ✓* requires audit_manager approval for PII/PHI exports
+- `employees:export` with ✓\* requires audit_manager approval for PII/PHI exports
 - `employees:delete` is soft delete (status = DISABLED, data retained 7 years)
 
 **Total per role:** SA:5, PSO:2, ISO:3, SysAdmin:5, CCA:4, DER:5, SM:4, CO:1, SenAud:3, AM:3, FW:1, Aud:2
@@ -88,15 +89,16 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Drug Testing Permissions (5)
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `drug-testing:read` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| `drug-testing:write` | ✓ | - | - | ✓ | - | ✓ | ✓ | ✓ | - | - | - | - |
-| `drug-testing:delete` | ✓ | - | ✓ | ✓ | - | - | - | - | - | - | - | - |
-| `drug-testing:export` | ✓ | - | - | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| `drug-testing:own` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Permission            | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :-------------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `drug-testing:read`   |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      -       |    ✓    |
+| `drug-testing:write`  |      ✓      |          -           |            -             |      ✓       |            -             |  ✓  |       ✓        |         ✓          |       -        |       -       |      -       |    -    |
+| `drug-testing:delete` |      ✓      |          -           |            ✓             |      ✓       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `drug-testing:export` |      ✓      |          -           |            -             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      -       |    ✓    |
+| `drug-testing:own`    |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      ✓       |    ✓    |
 
 **Notes:**
+
 - `drug-testing:write` includes MRO review workflow (DER, compliance_officer only)
 - DOT-regulated tests automatically reported to FMCSA clearinghouse
 - `drug-testing:own` allows field_worker to view own test results
@@ -107,18 +109,19 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Background Check Permissions (5)
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `background:read` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓*** | ✓*** | - | ✓*** |
-| `background:write` | ✓ | - | - | ✓ | - | ✓ | - | ✓ | - | - | - | - |
-| `background:delete` | ✓ | - | ✓ | ✓ | - | - | - | - | - | - | - | - |
-| `background:export` | ✓ | - | - | ✓ | ✓ | ✓ | - | ✓ | ✓* | ✓* | - | - |
-| `background:own` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Permission          | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :------------------ | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `background:read`   |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |    ✓\*\*\*     |    ✓\*\*\*    |      -       | ✓\*\*\* |
+| `background:write`  |      ✓      |          -           |            -             |      ✓       |            -             |  ✓  |       -        |         ✓          |       -        |       -       |      -       |    -    |
+| `background:delete` |      ✓      |          -           |            ✓             |      ✓       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `background:export` |      ✓      |          -           |            -             |      ✓       |            ✓             |  ✓  |       -        |         ✓          |      ✓\*       |      ✓\*      |      -       |    -    |
+| `background:own`    |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      ✓       |    ✓    |
 
 **Notes:**
-- `background:read` with ✓*** requires need-to-know justification (logged in audit trail)
+
+- `background:read` with ✓\*\*\* requires need-to-know justification (logged in audit trail)
 - `background:write` includes FCRA adjudication and adverse action workflows
-- `background:export` with ✓* requires dual control for criminal records
+- `background:export` with ✓\* requires dual control for criminal records
 - Adjudication outcomes require individualized assessment (EEOC compliance)
 
 **Total per role:** SA:5, PSO:2, ISO:3, SysAdmin:5, CCA:4, DER:5, SM:2, CO:4, SenAud:3, AM:3, FW:1, Aud:2
@@ -127,15 +130,16 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### DOT Compliance Permissions (5)
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `dot:read` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| `dot:write` | ✓ | - | - | ✓ | - | ✓ | - | ✓ | - | - | - | - |
-| `dot:delete` | ✓ | - | ✓ | ✓ | - | - | - | - | - | - | - | - |
-| `dot:export` | ✓ | - | - | ✓ | ✓ | ✓ | - | ✓ | ✓ | ✓ | - | ✓ |
-| `dot:own` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Permission   | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :----------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `dot:read`   |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      -       |    ✓    |
+| `dot:write`  |      ✓      |          -           |            -             |      ✓       |            -             |  ✓  |       -        |         ✓          |       -        |       -       |      -       |    -    |
+| `dot:delete` |      ✓      |          -           |            ✓             |      ✓       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `dot:export` |      ✓      |          -           |            -             |      ✓       |            ✓             |  ✓  |       -        |         ✓          |       ✓        |       ✓       |      -       |    ✓    |
+| `dot:own`    |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      ✓       |    ✓    |
 
 **Notes:**
+
 - `dot:write` includes Driver Qualification (DQ) file management
 - `dot:export` for DQ packets requires watermarking (download tracked)
 - FMCSA clearinghouse queries logged separately (federal requirement)
@@ -147,17 +151,18 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Occupational Health Permissions (5)
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `health:read` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| `health:write` | ✓ | - | - | ✓ | - | ✓ | ✓ | - | - | - | - | - |
-| `health:delete` | ✓ | - | ✓ | ✓ | - | - | - | - | - | - | - | - |
-| `health:export` | ✓ | - | - | ✓ | ✓ | ✓ | ✓ | - | ✓* | ✓* | - | ✓ |
-| `health:own` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Permission      | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :-------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `health:read`   |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      -       |    ✓    |
+| `health:write`  |      ✓      |          -           |            -             |      ✓       |            -             |  ✓  |       ✓        |         -          |       -        |       -       |      -       |    -    |
+| `health:delete` |      ✓      |          -           |            ✓             |      ✓       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `health:export` |      ✓      |          -           |            -             |      ✓       |            ✓             |  ✓  |       ✓        |         -          |      ✓\*       |      ✓\*      |      -       |    ✓    |
+| `health:own`    |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      ✓       |    ✓    |
 
 **Notes:**
+
 - `health:write` includes OSHA 300 log entries (recordable injuries)
-- `health:export` with ✓* requires dual control (PHI protected under HIPAA)
+- `health:export` with ✓\* requires dual control (PHI protected under HIPAA)
 - Medical surveillance programs (respirator fit tests, audiograms, etc.)
 - Field-level encryption for medical records (AES-256)
 
@@ -167,15 +172,16 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Training & Certifications Permissions (5)
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `training:read` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| `training:write` | ✓ | - | - | ✓ | - | ✓ | ✓ | - | - | - | - | - |
-| `training:delete` | ✓ | - | ✓ | ✓ | - | - | - | - | - | - | - | - |
-| `training:export` | ✓ | - | - | ✓ | ✓ | ✓ | ✓ | - | ✓ | ✓ | - | ✓ |
-| `training:own` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Permission        | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :---------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `training:read`   |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      -       |    ✓    |
+| `training:write`  |      ✓      |          -           |            -             |      ✓       |            -             |  ✓  |       ✓        |         -          |       -        |       -       |      -       |    -    |
+| `training:delete` |      ✓      |          -           |            ✓             |      ✓       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `training:export` |      ✓      |          -           |            -             |      ✓       |            ✓             |  ✓  |       ✓        |         -          |       ✓        |       ✓       |      -       |    ✓    |
+| `training:own`    |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      ✓       |    ✓    |
 
 **Notes:**
+
 - `training:write` includes certificate uploads, expiration date management
 - Automated alerts: 30/60/90 days before expiration
 - Compliance matrix tracking (role-based required certifications)
@@ -187,14 +193,15 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Billing Permissions (4)
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `billing:read` | ✓ | - | ✓ | ✓ | ✓ | ✓ | - | - | - | - | - | - |
-| `billing:write` | ✓ | - | - | ✓ | ✓ | - | - | - | - | - | - | - |
-| `billing:delete` | ✓ | - | ✓ | - | - | - | - | - | - | - | - | - |
-| `billing:export` | ✓ | - | ✓ | - | ✓ | - | - | - | - | - | - | - |
+| Permission       | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :--------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `billing:read`   |      ✓      |          -           |            ✓             |      ✓       |            ✓             |  ✓  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `billing:write`  |      ✓      |          -           |            -             |      ✓       |            ✓             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `billing:delete` |      ✓      |          -           |            ✓             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `billing:export` |      ✓      |          -           |            ✓             |      -       |            ✓             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - `billing:read` includes subscription details, invoices, payment history
 - `billing:write` allows creating/updating payment methods, subscriptions
 - `billing:delete` is super_admin + information_system_owner only (audit trail retained)
@@ -206,12 +213,13 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Policy Driver Permissions (2)
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `policy-driver:read` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
-| `policy-driver:write` | ✓ | - | - | ✓ | ✓ | ✓ | - | - | - | - | - | - |
+| Permission            | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :-------------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `policy-driver:read`  |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      -       |    ✓    |
+| `policy-driver:write` |      ✓      |          -           |            -             |      ✓       |            ✓             |  ✓  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - `policy-driver:write` allows creating/updating compliance policies (rules, thresholds)
 - Policies define compliance status calculation (green/amber/red flags)
 - Version control: All policy changes tracked with audit trail
@@ -223,11 +231,12 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Audit Logs Permissions (1)
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `audit-logs:read` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - | ✓ |
+| Permission        | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :---------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `audit-logs:read` |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       ✓        |         ✓          |       ✓        |       ✓       |      -       |    ✓    |
 
 **Notes:**
+
 - Audit logs are **immutable** (append-only, no DELETE permission)
 - 7-year retention required (FedRAMP, SOC 2, HIPAA)
 - Tenant-scoped queries (cannot view other tenants' logs)
@@ -239,12 +248,13 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Settings Permissions (2)
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `settings:read` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - | - | - | - | - | - |
-| `settings:write` | ✓ | ✓ | - | ✓ | ✓ | - | - | - | - | - | - | - |
+| Permission       | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :--------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `settings:read`  |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  ✓  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `settings:write` |      ✓      |          ✓           |            -             |      ✓       |            ✓             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - `settings:write` includes company settings, integrations (Checkr, Quest, etc.)
 - MFA enforcement policies (TOTP, SMS, hardware keys)
 - Session timeout configuration (per role)
@@ -256,12 +266,13 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Security Controls Permissions (2) - NEW for FedRAMP
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `security-controls:read` | ✓ | ✓ | ✓ | - | - | - | - | - | - | - | - | - |
-| `security-controls:write` | ✓ | ✓ | - | - | - | - | - | - | - | - | - | - |
+| Permission                | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :------------------------ | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `security-controls:read`  |      ✓      |          ✓           |            ✓             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `security-controls:write` |      ✓      |          ✓           |            -             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - Manages 323 FedRAMP Moderate security controls
 - System Security Plan (SSP) maintenance
 - Control implementation statements
@@ -274,13 +285,14 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### POAM Permissions (3) - NEW for FedRAMP
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `poam:read` | ✓ | ✓ | ✓ | - | - | - | - | - | - | - | - | - |
-| `poam:write` | ✓ | ✓ | - | - | - | - | - | - | - | - | - | - |
-| `poam:approve` | ✓ | - | ✓ | - | - | - | - | - | - | - | - | - |
+| Permission     | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `poam:read`    |      ✓      |          ✓           |            ✓             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `poam:write`   |      ✓      |          ✓           |            -             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `poam:approve` |      ✓      |          -           |            ✓             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - POAM = Plan of Action & Milestones (FedRAMP requirement)
 - Tracks remediation of security findings from 3PAO assessment
 - `poam:write` allows pcs_security_officer to create/update POAM items
@@ -292,13 +304,14 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Incident Management Permissions (3) - NEW for FedRAMP
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `incidents:read` | ✓ | ✓ | ✓ | ✓ | - | - | - | - | - | - | - | - |
-| `incidents:write` | ✓ | ✓ | - | - | - | - | - | - | - | - | - | - |
-| `incidents:escalate` | ✓ | ✓ | - | - | - | - | - | - | - | - | - | - |
+| Permission           | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :------------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `incidents:read`     |      ✓      |          ✓           |            ✓             |      ✓       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `incidents:write`    |      ✓      |          ✓           |            -             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `incidents:escalate` |      ✓      |          ✓           |            -             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - Security incident tracking (data breaches, unauthorized access, etc.)
 - `incidents:write` allows creating incident reports, assigning remediation
 - `incidents:escalate` triggers notifications to CISO, federal sponsor (if FedRAMP)
@@ -310,11 +323,12 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Role Assignment Approval (1) - NEW for FedRAMP
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `role-assignments:approve` | ✓ | ✓ | - | - | - | - | - | - | - | - | - | - |
+| Permission                 | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :------------------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `role-assignments:approve` |      ✓      |          ✓           |            -             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - **Dual control for privileged role assignments** (AC-5 separation of duties)
 - When system_admin assigns super_admin or pcs_security_officer role:
   1. Create role change request (status: PENDING_SECURITY_REVIEW)
@@ -328,12 +342,13 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Security Settings Permissions (2) - NEW for FedRAMP
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `security-settings:read` | ✓ | ✓ | ✓ | - | - | - | - | - | - | - | - | - |
-| `security-settings:write` | ✓ | ✓ | - | - | - | - | - | - | - | - | - | - |
+| Permission                | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :------------------------ | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `security-settings:read`  |      ✓      |          ✓           |            ✓             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `security-settings:write` |      ✓      |          ✓           |            -             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - Configure MFA policies (enforcement per role, allowed methods)
 - Session timeout policies (per role: 15min for super_admin, 24hr for field_worker)
 - Failed login lockout settings (5 attempts, 30min lockout)
@@ -345,12 +360,13 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Vulnerability Scan Permissions (2) - NEW for FedRAMP
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `vulnerability-scans:read` | ✓ | ✓ | ✓ | - | - | - | - | - | - | - | - | - |
-| `vulnerability-scans:remediate` | ✓ | ✓ | - | - | - | - | - | - | - | - | - | - |
+| Permission                      | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :------------------------------ | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `vulnerability-scans:read`      |      ✓      |          ✓           |            ✓             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `vulnerability-scans:remediate` |      ✓      |          ✓           |            -             |      -       |            -             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - Weekly automated vulnerability scans (Nessus, Qualys, or AWS Inspector)
 - `vulnerability-scans:read` allows viewing scan results, CVE details
 - `vulnerability-scans:remediate` allows marking vulnerabilities as fixed, false positive, risk accepted
@@ -362,13 +378,14 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Service Company Management (3) - NEW for MSP Model
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `service-companies:read` | ✓ | - | - | - | ✓ | - | - | - | ✓ | ✓ | - | - |
-| `service-companies:create` | ✓ | - | - | - | ✓ | - | - | - | - | - | - | - |
-| `service-companies:assign-auditor` | ✓ | - | - | - | ✓ | - | - | - | - | ✓ | - | - |
+| Permission                         | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :--------------------------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `service-companies:read`           |      ✓      |          -           |            -             |      -       |            ✓             |  -  |       -        |         -          |       ✓        |       ✓       |      -       |    -    |
+| `service-companies:create`         |      ✓      |          -           |            -             |      -       |            ✓             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `service-companies:assign-auditor` |      ✓      |          -           |            -             |      -       |            ✓             |  -  |       -        |         -          |       -        |       ✓       |      -       |    -    |
 
 **Notes:**
+
 - **Compliance Company Portal only** (MSP multi-tenant model)
 - Compliance companies manage portfolio of service companies
 - `service-companies:read` shows all companies in portfolio (aggregated compliance data)
@@ -380,11 +397,12 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Compliance Portfolio (1) - NEW for MSP Model
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `compliance-portfolio:read` | ✓ | - | - | - | ✓ | - | - | - | ✓ | ✓ | - | - |
+| Permission                  | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :-------------------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `compliance-portfolio:read` |      ✓      |          -           |            -             |      -       |            ✓             |  -  |       -        |         -          |       ✓        |       ✓       |      -       |    -    |
 
 **Notes:**
+
 - **Aggregated view** across ALL service companies in portfolio
 - Dashboard shows:
   - Total employees across all companies
@@ -398,13 +416,14 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Auditor Account Management (3) - NEW for MSP Model
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `auditor-accounts:create` | ✓ | - | - | - | ✓ | - | - | - | - | ✓ | - | - |
-| `auditor-accounts:modify` | ✓ | - | - | - | ✓ | - | - | - | - | ✓ | - | - |
-| `auditor-accounts:delete` | ✓ | - | - | - | ✓ | - | - | - | - | - | - | - |
+| Permission                | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :------------------------ | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `auditor-accounts:create` |      ✓      |          -           |            -             |      -       |            ✓             |  -  |       -        |         -          |       -        |       ✓       |      -       |    -    |
+| `auditor-accounts:modify` |      ✓      |          -           |            -             |      -       |            ✓             |  -  |       -        |         -          |       -        |       ✓       |      -       |    -    |
+| `auditor-accounts:delete` |      ✓      |          -           |            -             |      -       |            ✓             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - Compliance companies create auditor accounts (senior_auditor, auditor roles)
 - `auditor-accounts:create` includes time-limited access (optional, for contractor auditors)
 - `auditor-accounts:modify` allows changing assigned service companies, access expiration
@@ -416,12 +435,13 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Company Policies (MSP) (2) - NEW for MSP Model
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `company-policies:read` | ✓ | - | - | - | ✓ | - | - | - | ✓ | ✓ | - | - |
-| `company-policies:write` | ✓ | - | - | - | ✓ | - | - | - | - | - | - | - |
+| Permission               | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :----------------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `company-policies:read`  |      ✓      |          -           |            -             |      -       |            ✓             |  -  |       -        |         -          |       ✓        |       ✓       |      -       |    -    |
+| `company-policies:write` |      ✓      |          -           |            -             |      -       |            ✓             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - Company-wide policy templates (applied to all service companies in portfolio)
 - Examples: Standard drug testing frequency, background check packages
 - Service companies can override with stricter policies (not weaker)
@@ -433,12 +453,13 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### MSP Billing (2) - NEW for MSP Model
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `msp-billing:read` | ✓ | - | ✓ | - | ✓ | - | - | - | - | - | - | - |
-| `msp-billing:write` | ✓ | - | - | - | ✓ | - | - | - | - | - | - | - |
+| Permission          | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :------------------ | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `msp-billing:read`  |      ✓      |          -           |            ✓             |      -       |            ✓             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
+| `msp-billing:write` |      ✓      |          -           |            -             |      -       |            ✓             |  -  |       -        |         -          |       -        |       -       |      -       |    -    |
 
 **Notes:**
+
 - Billing for entire compliance company portfolio
 - `msp-billing:read` shows invoices for all service companies (aggregated)
 - Pricing models: Per-employee PEPM, per-test, per-background-check
@@ -450,11 +471,12 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Cross-Company Reports (1) - NEW for MSP Model
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `reports:cross-company` | ✓ | - | - | - | ✓ | - | - | - | ✓ | ✓ | - | - |
+| Permission              | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :---------------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `reports:cross-company` |      ✓      |          -           |            -             |      -       |            ✓             |  -  |       -        |         -          |       ✓        |       ✓       |      -       |    -    |
 
 **Notes:**
+
 - Aggregated reports across all service companies in portfolio
 - Examples:
   - Compliance summary (all companies)
@@ -468,15 +490,16 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### Audit Workflow Permissions (5) - NEW for MSP Model
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `audits:initiate` | ✓ | - | - | - | - | - | - | - | ✓ | ✓ | - | - |
-| `audits:read` | ✓ | ✓ | ✓ | ✓ | ✓ | - | - | - | ✓ | ✓ | - | ✓ |
-| `audits:approve` | ✓ | - | - | - | - | - | - | - | - | ✓ | - | - |
-| `audits:close` | ✓ | - | - | - | - | - | - | - | - | ✓ | - | - |
-| `audits:request-correction` | ✓ | - | - | - | - | - | - | - | ✓ | ✓ | - | - |
+| Permission                  | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :-------------------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `audits:initiate`           |      ✓      |          -           |            -             |      -       |            -             |  -  |       -        |         -          |       ✓        |       ✓       |      -       |    -    |
+| `audits:read`               |      ✓      |          ✓           |            ✓             |      ✓       |            ✓             |  -  |       -        |         -          |       ✓        |       ✓       |      -       |    ✓    |
+| `audits:approve`            |      ✓      |          -           |            -             |      -       |            -             |  -  |       -        |         -          |       -        |       ✓       |      -       |    -    |
+| `audits:close`              |      ✓      |          -           |            -             |      -       |            -             |  -  |       -        |         -          |       -        |       ✓       |      -       |    -    |
+| `audits:request-correction` |      ✓      |          -           |            -             |      -       |            -             |  -  |       -        |         -          |       ✓        |       ✓       |      -       |    -    |
 
 **Notes:**
+
 - **Audit workflow:** Initiate → Collect Evidence → Request Correction → Verify → Close
 - `audits:initiate` creates audit (assigns service company, auditor, scope, deadline)
 - `audits:request-correction` sends corrective action requests to service company DER
@@ -489,11 +512,12 @@ This document provides the **complete RBAC permissions matrix** for Patriot Comp
 
 ### PII Export Approval (1) - NEW for Dual Control
 
-| Permission | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
-|:-----------|:-----------:|:--------------------:|:------------------------:|:------------:|:------------------------:|:---:|:--------------:|:------------------:|:--------------:|:-------------:|:------------:|:-------:|
-| `pii-exports:approve` | ✓ | - | - | - | - | - | - | - | - | ✓ | - | - |
+| Permission            | super_admin | pcs_security_officer | information_system_owner | system_admin | compliance_company_admin | der | safety_manager | compliance_officer | senior_auditor | audit_manager | field_worker | auditor |
+| :-------------------- | :---------: | :------------------: | :----------------------: | :----------: | :----------------------: | :-: | :------------: | :----------------: | :------------: | :-----------: | :----------: | :-----: |
+| `pii-exports:approve` |      ✓      |          -           |            -             |      -       |            -             |  -  |       -        |         -          |       -        |       ✓       |      -       |    -    |
 
 **Notes:**
+
 - **Dual control required** for exports containing SSN, DOB, medical records, criminal records
 - Workflow:
   1. User requests export (employees:export, background:export, health:export)
@@ -534,14 +558,14 @@ Actions:
 
 These permissions require **approval from a second privileged user** before action is taken:
 
-| Permission | Requires Approval From | Use Case |
-|------------|------------------------|----------|
-| `employees:export` (with PII) | audit_manager (`pii-exports:approve`) | Export employee roster with SSN, DOB |
-| `background:export` (with criminal records) | audit_manager (`pii-exports:approve`) | Export background check reports |
-| `health:export` (with PHI) | audit_manager (`pii-exports:approve`) | Export medical surveillance data |
-| `role-assignments:approve` | pcs_security_officer | Assign super_admin or pcs_security_officer role |
-| `poam:approve` | information_system_owner | Approve POAM remediation plan |
-| `audits:close` | audit_manager | Close audit (all findings addressed) |
+| Permission                                  | Requires Approval From                | Use Case                                        |
+| ------------------------------------------- | ------------------------------------- | ----------------------------------------------- |
+| `employees:export` (with PII)               | audit_manager (`pii-exports:approve`) | Export employee roster with SSN, DOB            |
+| `background:export` (with criminal records) | audit_manager (`pii-exports:approve`) | Export background check reports                 |
+| `health:export` (with PHI)                  | audit_manager (`pii-exports:approve`) | Export medical surveillance data                |
+| `role-assignments:approve`                  | pcs_security_officer                  | Assign super_admin or pcs_security_officer role |
+| `poam:approve`                              | information_system_owner              | Approve POAM remediation plan                   |
+| `audits:close`                              | audit_manager                         | Close audit (all findings addressed)            |
 
 **Implementation:**
 
@@ -549,70 +573,75 @@ These permissions require **approval from a second privileged user** before acti
 // Example: Export with dual control
 async function exportEmployeesWithPII(userId: string, tenantId: string) {
   // Step 1: Check if user has employees:export permission
-  if (!hasPermission(user.role, 'employees:export')) {
-    throw new ForbiddenError('Missing employees:export permission')
+  if (!hasPermission(user.role, "employees:export")) {
+    throw new ForbiddenError("Missing employees:export permission");
   }
 
   // Step 2: Create export request (status: PENDING_APPROVAL)
   const exportRequest = await createExportRequest({
     requestedBy: userId,
     tenantId,
-    resource: 'employees',
+    resource: "employees",
     containsPII: true,
-    status: 'PENDING_APPROVAL',
-  })
+    status: "PENDING_APPROVAL",
+  });
 
   // Step 3: Notify audit_manager for approval
   await sendNotification({
     to: getAuditManagers(tenantId),
-    subject: 'PII Export Approval Required',
+    subject: "PII Export Approval Required",
     body: `User ${userId} requested export of employee roster with PII`,
     action: `/exports/${exportRequest.id}/approve`,
-  })
+  });
 
   return {
-    message: 'Export request created, awaiting approval',
+    message: "Export request created, awaiting approval",
     exportRequestId: exportRequest.id,
-  }
+  };
 }
 
 // Approval endpoint (called by audit_manager)
-async function approveExportRequest(exportRequestId: string, approverId: string) {
+async function approveExportRequest(
+  exportRequestId: string,
+  approverId: string
+) {
   // Check if approver has pii-exports:approve permission
-  if (!hasPermission(approver.role, 'pii-exports:approve')) {
-    throw new ForbiddenError('Missing pii-exports:approve permission')
+  if (!hasPermission(approver.role, "pii-exports:approve")) {
+    throw new ForbiddenError("Missing pii-exports:approve permission");
   }
 
   // Update status → APPROVED
   await updateExportRequest(exportRequestId, {
-    status: 'APPROVED',
+    status: "APPROVED",
     approvedBy: approverId,
     approvedAt: new Date(),
-  })
+  });
 
   // Generate watermarked export
   const exportFile = await generateEmployeeExport({
     tenantId: exportRequest.tenantId,
-    watermark: `Generated by: ${exportRequest.requestedBy}, Approved by: ${approverId}, Date: ${new Date().toISOString()}`,
-  })
+    watermark: `Generated by: ${
+      exportRequest.requestedBy
+    }, Approved by: ${approverId}, Date: ${new Date().toISOString()}`,
+  });
 
   // Upload to S3 with time-limited signed URL (24 hours)
-  const signedURL = await uploadExportToS3(exportFile, { expiresIn: 86400 })
+  const signedURL = await uploadExportToS3(exportFile, { expiresIn: 86400 });
 
   // Audit log
   await logAuditEvent({
-    action: 'EXPORT',
-    resource: 'employees',
+    action: "EXPORT",
+    resource: "employees",
     userId: exportRequest.requestedBy,
     details: {
       approved_by: approverId,
       record_count: exportFile.rowCount,
       watermark_id: exportFile.watermarkId,
     },
-    result: 'SUCCESS',
-  })
+    result: "SUCCESS",
+  });
 
-  return { signedURL, expiresAt: add(new Date(), { hours: 24 }) }
+  return { signedURL, expiresAt: add(new Date(), { hours: 24 }) };
 }
 ```
 
@@ -622,39 +651,39 @@ async function approveExportRequest(exportRequestId: string, approverId: string)
 
 ### Permission Count by Role
 
-| Role | Total Permissions | Category Breakdown |
-|:-----|:-----------------:|:-------------------|
-| **super_admin** | 70 (all) | Platform: 18, Core: 42, MSP: 10 |
-| **pcs_security_officer** | 25 | Platform: 18, Core: 7 |
-| **information_system_owner** | 28 | Platform: 13, Core: 15 |
-| **system_admin** | 45 | Core: 42, Settings: 3 |
-| **compliance_company_admin** | 38 | Core: 28, MSP: 10 |
-| **der** | 38 | Core: 37, Settings: 1 |
-| **safety_manager** | 28 | Core: 28 |
-| **compliance_officer** | 24 | Core: 24 |
-| **senior_auditor** | 32 | Core: 22, MSP: 7, Audit: 3 |
-| **audit_manager** | 35 | Core: 22, MSP: 8, Audit: 5 |
-| **field_worker** | 7 | Own records only: 7 |
-| **auditor** | 21 | Core: 16, MSP: 1, Audit: 4 |
+| Role                         | Total Permissions | Category Breakdown              |
+| :--------------------------- | :---------------: | :------------------------------ |
+| **super_admin**              |     70 (all)      | Platform: 18, Core: 42, MSP: 10 |
+| **pcs_security_officer**     |        25         | Platform: 18, Core: 7           |
+| **information_system_owner** |        28         | Platform: 13, Core: 15          |
+| **system_admin**             |        45         | Core: 42, Settings: 3           |
+| **compliance_company_admin** |        38         | Core: 28, MSP: 10               |
+| **der**                      |        38         | Core: 37, Settings: 1           |
+| **safety_manager**           |        28         | Core: 28                        |
+| **compliance_officer**       |        24         | Core: 24                        |
+| **senior_auditor**           |        32         | Core: 22, MSP: 7, Audit: 3      |
+| **audit_manager**            |        35         | Core: 22, MSP: 8, Audit: 5      |
+| **field_worker**             |         7         | Own records only: 7             |
+| **auditor**                  |        21         | Core: 16, MSP: 1, Audit: 4      |
 
 ---
 
 ### Role Capability Matrix
 
-| Role | Can Create | Can Update | Can Delete | Can Export | Can Approve |
-|:-----|:----------:|:----------:|:----------:|:----------:|:-----------:|
-| **super_admin** | ✓ All | ✓ All | ✓ All | ✓ All | ✓ All |
-| **pcs_security_officer** | ✓ Security controls, POAM, incidents | ✓ Same | - | - | ✓ Role assignments |
-| **information_system_owner** | - | - | ✓ Sensitive deletions | ✓ Billing, reports | ✓ POAM, data destruction |
-| **system_admin** | ✓ Employees, policies, settings | ✓ Same | ✓ Employees, policies | ✓ Most resources | - |
-| **compliance_company_admin** | ✓ Service companies, auditors, policies | ✓ Same | ✓ Auditor accounts | ✓ Cross-company reports | - |
-| **der** | ✓ Employees, compliance records, policies | ✓ Same | - | ✓ Most resources | - |
-| **safety_manager** | ✓ Employees, drug tests, health, training | ✓ Same | - | ✓ Same | - |
-| **compliance_officer** | ✓ Drug tests, background checks, DOT records | ✓ Same | - | ✓ Drug tests, background, DOT | - |
-| **senior_auditor** | ✓ Audits | ✓ Audit reports (draft) | - | ✓ De-identified exports | - |
-| **audit_manager** | ✓ Audits | ✓ Same | - | ✓ PII/PHI exports (with approval) | ✓ Audits, PII exports |
-| **field_worker** | - | ✓ Own records only | - | - | - |
-| **auditor** | - | - | - | ✓ De-identified exports | - |
+| Role                         |                  Can Create                  |       Can Update        |      Can Delete       |            Can Export             |       Can Approve        |
+| :--------------------------- | :------------------------------------------: | :---------------------: | :-------------------: | :-------------------------------: | :----------------------: |
+| **super_admin**              |                    ✓ All                     |          ✓ All          |         ✓ All         |               ✓ All               |          ✓ All           |
+| **pcs_security_officer**     |     ✓ Security controls, POAM, incidents     |         ✓ Same          |           -           |                 -                 |    ✓ Role assignments    |
+| **information_system_owner** |                      -                       |            -            | ✓ Sensitive deletions |        ✓ Billing, reports         | ✓ POAM, data destruction |
+| **system_admin**             |       ✓ Employees, policies, settings        |         ✓ Same          | ✓ Employees, policies |         ✓ Most resources          |            -             |
+| **compliance_company_admin** |   ✓ Service companies, auditors, policies    |         ✓ Same          |  ✓ Auditor accounts   |      ✓ Cross-company reports      |            -             |
+| **der**                      |  ✓ Employees, compliance records, policies   |         ✓ Same          |           -           |         ✓ Most resources          |            -             |
+| **safety_manager**           |  ✓ Employees, drug tests, health, training   |         ✓ Same          |           -           |              ✓ Same               |            -             |
+| **compliance_officer**       | ✓ Drug tests, background checks, DOT records |         ✓ Same          |           -           |   ✓ Drug tests, background, DOT   |            -             |
+| **senior_auditor**           |                   ✓ Audits                   | ✓ Audit reports (draft) |           -           |      ✓ De-identified exports      |            -             |
+| **audit_manager**            |                   ✓ Audits                   |         ✓ Same          |           -           | ✓ PII/PHI exports (with approval) |  ✓ Audits, PII exports   |
+| **field_worker**             |                      -                       |   ✓ Own records only    |           -           |                 -                 |            -             |
+| **auditor**                  |                      -                       |            -            |           -           |      ✓ De-identified exports      |            -             |
 
 ---
 
@@ -699,31 +728,31 @@ Rationale: To export employees, you must be able to view employee data.
 ```typescript
 function hasPermission(role: Role, permission: Permission): boolean {
   // Get base permissions for role
-  const rolePermissions = ROLE_PERMISSIONS[role]
+  const rolePermissions = ROLE_PERMISSIONS[role];
 
   // Check if user has the exact permission
   if (rolePermissions.includes(permission)) {
-    return true
+    return true;
   }
 
   // Check for implied permissions
-  const [resource, action] = permission.split(':')
+  const [resource, action] = permission.split(":");
 
-  if (action === 'read') {
+  if (action === "read") {
     // If asking for 'read', check if user has 'write', 'delete', or 'export'
     return (
       rolePermissions.includes(`${resource}:write`) ||
       rolePermissions.includes(`${resource}:delete`) ||
       rolePermissions.includes(`${resource}:export`)
-    )
+    );
   }
 
-  if (action === 'write') {
+  if (action === "write") {
     // If asking for 'write', check if user has 'delete'
-    return rolePermissions.includes(`${resource}:delete`)
+    return rolePermissions.includes(`${resource}:delete`);
   }
 
-  return false
+  return false;
 }
 ```
 
@@ -735,13 +764,13 @@ function hasPermission(role: Role, permission: Permission): boolean {
 
 Exports containing **Personally Identifiable Information (PII)** or **Protected Health Information (PHI)** require **dual control approval**:
 
-| Export Type | Fields Requiring Approval | Approver Role |
-|-------------|---------------------------|---------------|
-| **Employee Roster** | SSN, DOB, home address | audit_manager |
-| **Background Check** | Criminal records, adjudication details | audit_manager |
-| **Drug Testing** | MRO notes, prescription details | audit_manager |
+| Export Type             | Fields Requiring Approval              | Approver Role |
+| ----------------------- | -------------------------------------- | ------------- |
+| **Employee Roster**     | SSN, DOB, home address                 | audit_manager |
+| **Background Check**    | Criminal records, adjudication details | audit_manager |
+| **Drug Testing**        | MRO notes, prescription details        | audit_manager |
 | **Occupational Health** | Medical exam results, OSHA 300 details | audit_manager |
-| **DOT DQ Files** | Medical certificate, violation history | audit_manager |
+| **DOT DQ Files**        | Medical certificate, violation history | audit_manager |
 
 **Workflow:**
 
@@ -887,7 +916,7 @@ const serviceCompanies = await prisma.serviceCompany.findMany({
   where: {
     complianceCompanyId: user.complianceCompanyId,
   },
-})
+});
 
 // Senior Auditor sees ASSIGNED service companies only
 const serviceCompanies = await prisma.serviceCompany.findMany({
@@ -896,7 +925,7 @@ const serviceCompanies = await prisma.serviceCompany.findMany({
       in: user.assignedServiceCompanyIds, // From JWT claims
     },
   },
-})
+});
 ```
 
 ### Own Records Only (Field Workers)
@@ -933,150 +962,156 @@ WHERE tenant_id = 'acme_corp'
 
 export type Permission =
   // Dashboard (2)
-  | 'dashboard:read'
-  | 'dashboard:write'
+  | "dashboard:read"
+  | "dashboard:write"
   // Employees (5)
-  | 'employees:read'
-  | 'employees:write'
-  | 'employees:delete'
-  | 'employees:export'
-  | 'employees:own'
+  | "employees:read"
+  | "employees:write"
+  | "employees:delete"
+  | "employees:export"
+  | "employees:own"
   // Drug Testing (5)
-  | 'drug-testing:read'
-  | 'drug-testing:write'
-  | 'drug-testing:delete'
-  | 'drug-testing:export'
-  | 'drug-testing:own'
+  | "drug-testing:read"
+  | "drug-testing:write"
+  | "drug-testing:delete"
+  | "drug-testing:export"
+  | "drug-testing:own"
   // Background (5)
-  | 'background:read'
-  | 'background:write'
-  | 'background:delete'
-  | 'background:export'
-  | 'background:own'
+  | "background:read"
+  | "background:write"
+  | "background:delete"
+  | "background:export"
+  | "background:own"
   // DOT (5)
-  | 'dot:read'
-  | 'dot:write'
-  | 'dot:delete'
-  | 'dot:export'
-  | 'dot:own'
+  | "dot:read"
+  | "dot:write"
+  | "dot:delete"
+  | "dot:export"
+  | "dot:own"
   // Health (5)
-  | 'health:read'
-  | 'health:write'
-  | 'health:delete'
-  | 'health:export'
-  | 'health:own'
+  | "health:read"
+  | "health:write"
+  | "health:delete"
+  | "health:export"
+  | "health:own"
   // Training (5)
-  | 'training:read'
-  | 'training:write'
-  | 'training:delete'
-  | 'training:export'
-  | 'training:own'
+  | "training:read"
+  | "training:write"
+  | "training:delete"
+  | "training:export"
+  | "training:own"
   // Billing (4)
-  | 'billing:read'
-  | 'billing:write'
-  | 'billing:delete'
-  | 'billing:export'
+  | "billing:read"
+  | "billing:write"
+  | "billing:delete"
+  | "billing:export"
   // Policy Driver (2)
-  | 'policy-driver:read'
-  | 'policy-driver:write'
+  | "policy-driver:read"
+  | "policy-driver:write"
   // Audit Logs (1)
-  | 'audit-logs:read'
+  | "audit-logs:read"
   // Settings (2)
-  | 'settings:read'
-  | 'settings:write'
+  | "settings:read"
+  | "settings:write"
   // Security Controls (2)
-  | 'security-controls:read'
-  | 'security-controls:write'
+  | "security-controls:read"
+  | "security-controls:write"
   // POAM (3)
-  | 'poam:read'
-  | 'poam:write'
-  | 'poam:approve'
+  | "poam:read"
+  | "poam:write"
+  | "poam:approve"
   // Incidents (3)
-  | 'incidents:read'
-  | 'incidents:write'
-  | 'incidents:escalate'
+  | "incidents:read"
+  | "incidents:write"
+  | "incidents:escalate"
   // Role Assignments (1)
-  | 'role-assignments:approve'
+  | "role-assignments:approve"
   // Security Settings (2)
-  | 'security-settings:read'
-  | 'security-settings:write'
+  | "security-settings:read"
+  | "security-settings:write"
   // Vulnerability Scans (2)
-  | 'vulnerability-scans:read'
-  | 'vulnerability-scans:remediate'
+  | "vulnerability-scans:read"
+  | "vulnerability-scans:remediate"
   // Service Companies (3)
-  | 'service-companies:read'
-  | 'service-companies:create'
-  | 'service-companies:assign-auditor'
+  | "service-companies:read"
+  | "service-companies:create"
+  | "service-companies:assign-auditor"
   // Compliance Portfolio (1)
-  | 'compliance-portfolio:read'
+  | "compliance-portfolio:read"
   // Auditor Accounts (3)
-  | 'auditor-accounts:create'
-  | 'auditor-accounts:modify'
-  | 'auditor-accounts:delete'
+  | "auditor-accounts:create"
+  | "auditor-accounts:modify"
+  | "auditor-accounts:delete"
   // Company Policies (2)
-  | 'company-policies:read'
-  | 'company-policies:write'
+  | "company-policies:read"
+  | "company-policies:write"
   // MSP Billing (2)
-  | 'msp-billing:read'
-  | 'msp-billing:write'
+  | "msp-billing:read"
+  | "msp-billing:write"
   // Cross-Company Reports (1)
-  | 'reports:cross-company'
+  | "reports:cross-company"
   // Audits (5)
-  | 'audits:initiate'
-  | 'audits:read'
-  | 'audits:approve'
-  | 'audits:close'
-  | 'audits:request-correction'
+  | "audits:initiate"
+  | "audits:read"
+  | "audits:approve"
+  | "audits:close"
+  | "audits:request-correction"
   // PII Exports (1)
-  | 'pii-exports:approve'
+  | "pii-exports:approve";
 
 export type Role =
-  | 'super_admin'
-  | 'pcs_security_officer'
-  | 'information_system_owner'
-  | 'system_admin'
-  | 'compliance_company_admin'
-  | 'der'
-  | 'safety_manager'
-  | 'compliance_officer'
-  | 'senior_auditor'
-  | 'audit_manager'
-  | 'field_worker'
-  | 'auditor'
+  | "super_admin"
+  | "pcs_security_officer"
+  | "information_system_owner"
+  | "system_admin"
+  | "compliance_company_admin"
+  | "der"
+  | "safety_manager"
+  | "compliance_officer"
+  | "senior_auditor"
+  | "audit_manager"
+  | "field_worker"
+  | "auditor";
 
 export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
   super_admin: [
     // All 70 permissions
-    'dashboard:read',
-    'dashboard:write',
-    'employees:read',
-    'employees:write',
-    'employees:delete',
-    'employees:export',
-    'employees:own',
+    "dashboard:read",
+    "dashboard:write",
+    "employees:read",
+    "employees:write",
+    "employees:delete",
+    "employees:export",
+    "employees:own",
     // ... (all 70)
   ],
   pcs_security_officer: [
-    'dashboard:read',
-    'dashboard:write',
-    'employees:read',
-    'employees:own',
+    "dashboard:read",
+    "dashboard:write",
+    "employees:read",
+    "employees:own",
     // ... (25 total)
   ],
   // ... (other roles)
-}
+};
 
 export function hasPermission(role: Role, permission: Permission): boolean {
-  const rolePermissions = ROLE_PERMISSIONS[role]
-  return rolePermissions.includes(permission)
+  const rolePermissions = ROLE_PERMISSIONS[role];
+  return rolePermissions.includes(permission);
 }
 
-export function hasAnyPermission(role: Role, permissions: Permission[]): boolean {
-  return permissions.some(p => hasPermission(role, p))
+export function hasAnyPermission(
+  role: Role,
+  permissions: Permission[]
+): boolean {
+  return permissions.some((p) => hasPermission(role, p));
 }
 
-export function hasAllPermissions(role: Role, permissions: Permission[]): boolean {
-  return permissions.every(p => hasPermission(role, p))
+export function hasAllPermissions(
+  role: Role,
+  permissions: Permission[]
+): boolean {
+  return permissions.every((p) => hasPermission(role, p));
 }
 ```
 
@@ -1084,34 +1119,41 @@ export function hasAllPermissions(role: Role, permissions: Permission[]): boolea
 
 ```typescript
 // hooks/use-rbac.ts
-'use client'
+"use client";
 
-import { useSession } from '@/lib/auth/session-context'
-import { hasPermission, hasAnyPermission, hasAllPermissions, type Permission } from '@/lib/rbac/permissions'
+import { useSession } from "@/lib/auth/session-context";
+import {
+  hasPermission,
+  hasAnyPermission,
+  hasAllPermissions,
+  type Permission,
+} from "@/lib/rbac/permissions";
 
 export function useRBAC() {
-  const { user } = useSession()
+  const { user } = useSession();
 
   return {
     user,
     role: user.role,
     can: (permission: Permission) => hasPermission(user.role, permission),
-    canAny: (permissions: Permission[]) => hasAnyPermission(user.role, permissions),
-    canAll: (permissions: Permission[]) => hasAllPermissions(user.role, permissions),
-  }
+    canAny: (permissions: Permission[]) =>
+      hasAnyPermission(user.role, permissions),
+    canAll: (permissions: Permission[]) =>
+      hasAllPermissions(user.role, permissions),
+  };
 }
 
 // Usage in components:
 export function EmployeeActions({ employeeId }: { employeeId: string }) {
-  const { can } = useRBAC()
+  const { can } = useRBAC();
 
   return (
     <div>
-      {can('employees:write') && <Button>Edit</Button>}
-      {can('employees:delete') && <Button variant="destructive">Delete</Button>}
-      {can('employees:export') && <Button>Export</Button>}
+      {can("employees:write") && <Button>Edit</Button>}
+      {can("employees:delete") && <Button variant="destructive">Delete</Button>}
+      {can("employees:export") && <Button>Export</Button>}
     </div>
-  )
+  );
 }
 ```
 
@@ -1119,29 +1161,33 @@ export function EmployeeActions({ employeeId }: { employeeId: string }) {
 
 ```typescript
 // lib/api/with-auth.ts
-import { NextRequest, NextResponse } from 'next/server'
-import { verifyToken } from '@/lib/auth/jwt'
-import { hasPermission, type Permission, type Role } from '@/lib/rbac/permissions'
+import { NextRequest, NextResponse } from "next/server";
+import { verifyToken } from "@/lib/auth/jwt";
+import {
+  hasPermission,
+  type Permission,
+  type Role,
+} from "@/lib/rbac/permissions";
 
 interface AuthenticatedRequest extends NextRequest {
   user: {
-    id: string
-    email: string
-    role: Role
-    tenantId: string
-    permissions: Permission[]
-  }
+    id: string;
+    email: string;
+    role: Role;
+    tenantId: string;
+    permissions: Permission[];
+  };
 }
 
 type RouteHandler = (
   request: AuthenticatedRequest,
   context?: { params: Record<string, string> }
-) => Promise<NextResponse>
+) => Promise<NextResponse>;
 
 interface WithAuthOptions {
-  permissions?: Permission[]
-  anyPermission?: Permission[]
-  allowedRoles?: Role[]
+  permissions?: Permission[];
+  anyPermission?: Permission[];
+  allowedRoles?: Role[];
 }
 
 export function withAuth(handler: RouteHandler, options: WithAuthOptions = {}) {
@@ -1150,56 +1196,80 @@ export function withAuth(handler: RouteHandler, options: WithAuthOptions = {}) {
     context?: { params: Record<string, string> }
   ): Promise<NextResponse> => {
     try {
-      const token = request.headers.get('Authorization')?.replace('Bearer ', '')
+      const token = request.headers
+        .get("Authorization")
+        ?.replace("Bearer ", "");
 
       if (!token) {
         return NextResponse.json(
-          { error: { code: 'UNAUTHORIZED', message: 'Missing authentication token' } },
+          {
+            error: {
+              code: "UNAUTHORIZED",
+              message: "Missing authentication token",
+            },
+          },
           { status: 401 }
-        )
+        );
       }
 
-      const payload = await verifyToken(token)
+      const payload = await verifyToken(token);
 
       // Check all required permissions
       if (options.permissions) {
-        const hasAll = options.permissions.every(p => hasPermission(payload.role, p))
+        const hasAll = options.permissions.every((p) =>
+          hasPermission(payload.role, p)
+        );
         if (!hasAll) {
           return NextResponse.json(
-            { error: { code: 'FORBIDDEN', message: 'Missing required permissions', required: options.permissions } },
+            {
+              error: {
+                code: "FORBIDDEN",
+                message: "Missing required permissions",
+                required: options.permissions,
+              },
+            },
             { status: 403 }
-          )
+          );
         }
       }
 
       // Check any permission
       if (options.anyPermission) {
-        const hasAny = options.anyPermission.some(p => hasPermission(payload.role, p))
+        const hasAny = options.anyPermission.some((p) =>
+          hasPermission(payload.role, p)
+        );
         if (!hasAny) {
           return NextResponse.json(
-            { error: { code: 'FORBIDDEN', message: 'Missing required permissions' } },
+            {
+              error: {
+                code: "FORBIDDEN",
+                message: "Missing required permissions",
+              },
+            },
             { status: 403 }
-          )
+          );
         }
       }
 
-      const authenticatedRequest = request as AuthenticatedRequest
+      const authenticatedRequest = request as AuthenticatedRequest;
       authenticatedRequest.user = {
         id: payload.sub,
         email: payload.email,
         role: payload.role,
         tenantId: payload.tenantId,
         permissions: payload.permissions,
-      }
+      };
 
-      return handler(authenticatedRequest, context)
+      return handler(authenticatedRequest, context);
     } catch (error) {
       return NextResponse.json(
-        { error: { code: 'UNAUTHORIZED', message: 'Invalid or expired token' } },
+        {
+          error: { code: "UNAUTHORIZED", message: "Invalid or expired token" },
+        },
         { status: 401 }
-      )
+      );
     }
-  }
+  };
 }
 
 // Usage in API routes:
@@ -1207,22 +1277,22 @@ export const GET = withAuth(
   async (request) => {
     const employees = await prisma.employee.findMany({
       where: { tenantId: request.user.tenantId },
-    })
-    return NextResponse.json({ data: employees })
+    });
+    return NextResponse.json({ data: employees });
   },
-  { permissions: ['employees:read'] }
-)
+  { permissions: ["employees:read"] }
+);
 
 export const POST = withAuth(
   async (request) => {
-    const body = await request.json()
+    const body = await request.json();
     const employee = await prisma.employee.create({
       data: { ...body, tenantId: request.user.tenantId },
-    })
-    return NextResponse.json({ data: employee })
+    });
+    return NextResponse.json({ data: employee });
   },
-  { permissions: ['employees:write'] }
-)
+  { permissions: ["employees:write"] }
+);
 ```
 
 ---
@@ -1230,6 +1300,7 @@ export const POST = withAuth(
 **Document Complete: RBAC Permissions Matrix**
 
 **Summary:**
+
 - **56 permissions** across 13 resource categories
 - **12 roles** with granular access control
 - **Dual control** for PII/PHI exports (6 permissions)

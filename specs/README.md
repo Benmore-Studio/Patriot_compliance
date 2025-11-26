@@ -165,12 +165,98 @@ Documentation is maintained in version control alongside code. When making chang
 - **Adverse Action**: Process when background check results affect employment
 - **OSHA 300**: Occupational Safety and Health Administration injury log
 
+---
+
+## 🎯 Action Plans
+
+Each specification document includes a detailed **Action Plan** section with:
+- **Phased implementation** (typically 4 phases over 1 month)
+- **Task priorities** (High/Medium/Low)
+- **Effort estimates** (days)
+- **Dependencies** between tasks
+- **Deliverable checklists**
+
+**To implement a feature**:
+1. Find the relevant spec (e.g., `architecture/security.md` for RBAC)
+2. Navigate to the "Action Plan" section
+3. Follow the phases sequentially
+4. Check off deliverables as you complete them
+
+**Example Action Plan Structure**:
+```
+Phase 1: Foundation (Week 1)
+├── Task 1: Setup infrastructure (2 days, High priority)
+├── Task 2: Create schemas (1 day, High priority)
+└── Deliverables: [ ] Infrastructure ready, [ ] Schemas created
+
+Phase 2: Implementation (Week 2)
+├── Task 3: Build service layer (3 days, High priority)
+└── Deliverables: [ ] Service working, [ ] Tests passing
+```
+
+---
+
+## 📊 Implementation Status
+
+### Completed Specifications
+
+✅ **Architecture Layer** (5/5 complete):
+- System Overview - C4 diagrams, system boundaries
+- Data Layer - PostgreSQL, Redis, Kafka, pgvector
+- API Layer - Django middleware, webhooks, serializers
+- AI Gateway - DER IQ, text-to-SQL, RAG
+- Security - RBAC, RLS, MFA, audit logging
+- Infrastructure - ECS Fargate, Aurora, Blue-Green deployment
+
+✅ **Compliance Documentation** (4/4 complete):
+- RBAC Permissions Matrix - 11 roles, dual-portal model
+- SOC 2 Controls - Trust Service Criteria, evidence automation
+- FedRAMP Roadmap - 18-month timeline, 325 controls
+- PCI SAQ-A - 22 requirements, Stripe integration
+
+✅ **Module Specifications** (1/7 complete):
+- Employee Lifecycle - State machine, universal compliance pattern
+
+🟡 **Module Specifications** (6/7 remaining):
+- Drug & Alcohol Testing - Existing spec (needs enhancement)
+- Background Checks - Existing spec (needs enhancement)
+- DOT Compliance - Existing spec (needs enhancement)
+- Occupational Health - Existing spec (needs enhancement)
+- Training & Certifications - Existing spec (needs enhancement)
+- Geo-Fencing - Existing spec (needs enhancement)
+
+---
+
+## 🔄 Documentation Maintenance
+
+### Update Frequency
+
+- **Architecture specs**: Update when system design changes
+- **Module specs**: Update when business logic changes
+- **Compliance docs**:
+  - SOC 2: Quarterly during observation, annually thereafter
+  - FedRAMP: Annually for SSP, monthly for ConMon
+  - PCI: Annually for SAQ-A validation
+- **Action plans**: Update as implementation progresses
+
+### Who Updates What
+
+| Document Type | Primary Owner | Review Frequency |
+|---------------|---------------|------------------|
+| Architecture specs | Engineering | Quarterly |
+| Module specs | Product + Engineering | Per feature release |
+| Security specs | Security Team | Monthly |
+| Compliance docs | Compliance Team | Per certification cycle |
+| Infrastructure | DevOps | Per infrastructure change |
+
+---
+
 ## Contact & Questions
 
 Refer to the specific CLAUDE.md files for development guidelines:
 
-- **Global development**: See CLAUDE.md
-- **Frontend questions**: See frontend/CLAUDE.md
-- **Backend questions**: See backend/CLAUDE.md
-- **Architecture/design**: See ARCHITECTURE\_\* files
-- **Feature specs**: See COMPLIANCE_PORTAL_INSTRUCTIONS.md
+- **Global development**: See [CLAUDE.md](../CLAUDE.md)
+- **Frontend questions**: See frontend/CLAUDE.md *(to be created)*
+- **Backend questions**: See backend/CLAUDE.md *(to be created)*
+- **Architecture/design**: See `architecture/` directory
+- **Feature specs**: See `modules/` directory
