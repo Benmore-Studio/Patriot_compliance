@@ -2,98 +2,16 @@
 
 This directory contains comprehensive documentation for the Patriot Compliance Systems project, organizing specifications, architecture, and implementation guides for both frontend and backend development.
 
-**Target Compliance**: FedRAMP Moderate (long-term), SOC 2 Type II, PCI SAQ-A
-**Scale Target**: 10K → 1M users
-**Architecture**: Django + DRF (backend), Next.js 14 (frontend), PostgreSQL + Redis + Kafka
+## Directory Structure
 
----
+### Documentation Files
 
-## 🚀 Quick Start
-
-**New to the project?** Start here:
-
-1. **Understand the System**: Read [System Overview](./architecture/overview.md) for high-level architecture
-2. **Learn the Data Model**: Review [Data Layer](./architecture/data-layer.md) for database schema and caching
-3. **Explore Security**: Check [Security Architecture](./architecture/security.md) for RBAC and RLS
-4. **Review Compliance**: See [SOC 2 Controls](./compliance/soc2-controls.md) and [FedRAMP Roadmap](./compliance/fedramp-roadmap.md)
-
-**Building a feature?**
-- Review the relevant module spec in `modules/` (e.g., [Drug & Alcohol Testing](./modules/drug-alcohol.md))
-- Follow the [Universal Compliance Pattern](./modules/employee-lifecycle.md#2-universal-compliance-pattern) for consistency
-- Implement with [Action Plans](#action-plans) in each spec
-
----
-
-## 📋 Documentation Index
-
-### By Role
-
-**Engineering Team**:
-- [Data Layer Spec](./architecture/data-layer.md) - Database schema, caching, Kafka
-- [API Layer Spec](./architecture/api-layer.md) - Middleware, webhooks, serializers
-- [AI Gateway Spec](./architecture/ai-gateway.md) - Text-to-SQL, RAG pipeline
-
-**DevOps Team**:
-- [Infrastructure Spec](./architecture/infrastructure.md) - AWS resources, ECS, CI/CD
-- [Disaster Recovery](./architecture/infrastructure.md#6-disaster-recovery) - Backup and DR procedures
-
-**Security Team**:
-- [Security Architecture](./architecture/security.md) - RBAC, RLS, MFA, audit logging
-- [SOC 2 Controls](./compliance/soc2-controls.md) - Control implementation and evidence
-
-**Compliance Team**:
-- [FedRAMP Roadmap](./compliance/fedramp-roadmap.md) - 18-month timeline to ATO
-- [PCI SAQ-A](./compliance/pci-saq-a.md) - Annual PCI validation
-- [RBAC Matrix](./compliance/rbac-permissions-matrix.md) - Complete permission mapping
-
-**Product Team**:
-- [Employee Lifecycle](./modules/employee-lifecycle.md) - State machine and workflows
-- Module specifications in `modules/` - Business logic for each domain
-
----
-
-## Architecture Specifications (Primary Reference)
-
-### Core Architecture (`architecture/`)
-
-Complete technical specifications for system architecture and implementation.
-
-- **[System Overview](./architecture/overview.md)** - C4 Context/Container diagrams, system boundaries, technology stack, performance targets
-- **[Data Layer](./architecture/data-layer.md)** - PostgreSQL with monthly partitioning, Redis read-through caching, Kafka event streaming, pgvector embeddings, field-level encryption
-- **[API Layer](./architecture/api-layer.md)** - Django middleware stack (7 layers), webhook handlers (Checkr/Quest/FMCSA), idempotency, DRF serializers with PII masking
-- **[AI Gateway](./architecture/ai-gateway.md)** - DER IQ natural language queries, text-to-SQL generation, RAG pipeline with pgvector, RBAC-aware query injection, prompt security
-- **[Security Architecture](./architecture/security.md)** - Hybrid RBAC (11 roles, dual-portal), PostgreSQL RLS policies, dual-control workflows, MFA (TOTP/FIDO2), immutable audit logging
-- **[Infrastructure](./architecture/infrastructure.md)** - AWS ECS Fargate cluster, Aurora PostgreSQL Multi-AZ, ElastiCache Redis, MSK Kafka, native Blue-Green deployment, disaster recovery
-
-### Compliance Modules (`modules/`)
-
-Business logic and workflows for each compliance domain.
-
-- **[Employee Lifecycle](./modules/employee-lifecycle.md)** - State machine (8 states), hybrid status + events model, universal compliance pattern, policy driver, automated flagging (green/yellow/red)
-- **[Drug & Alcohol Testing](./modules/drug-alcohol.md)** - MRO review workflow, FMCSA clearinghouse reporting, random selection algorithms
-- **[Background Checks](./modules/background-checks.md)** - FCRA adjudication process, adverse action workflows, individualized assessment
-- **[DOT Compliance](./modules/dot-compliance.md)** - Driver qualification files, medical certificate tracking, annual clearinghouse queries
-- **[Occupational Health](./modules/occupational-health.md)** - Medical surveillance programs, OSHA 300 logging, fitness-for-duty exams
-- **[Training & Certifications](./modules/training-certifications.md)** - Certificate lifecycle management, OCR extraction, 30/60/90-day expiration alerts
-- **[Geo-Fencing](./modules/geo-fencing.md)** - PostGIS geo-zones, GPS/QR check-ins, location-based compliance requirements
-
-### Compliance & Security (`compliance/`)
-
-Certification roadmaps and security control documentation.
-
-- **[RBAC Permissions Matrix](./compliance/rbac-permissions-matrix.md)** - 11 system roles × 8 modules, dual-portal model (Service Company + Compliance Company), permission verbs (VIEW/CREATE/EDIT/DELETE/APPROVE/EXPORT/CONFIGURE/ASSIGN)
-- **[SOC 2 Controls](./compliance/soc2-controls.md)** - 5 Trust Service Criteria (CC/Security/Availability/Confidentiality/Processing Integrity/Privacy), evidence automation, 6-month timeline
-- **[FedRAMP Roadmap](./compliance/fedramp-roadmap.md)** - 18-month path to FedRAMP Moderate ATO, 325 security controls, System Security Plan (SSP), AWS GovCloud migration, continuous monitoring
-- **[PCI SAQ-A](./compliance/pci-saq-a.md)** - Minimal PCI compliance (22 requirements), Stripe tokens only, annual attestation process, eligibility maintenance
-
----
-
-## Legacy Documentation Files
-
-- **COMPLIANCE_PORTAL_INSTRUCTIONS.md** - Development instructions for the compliance portal
-- **ARCHITECTURE_ASSESSMENT.md** - Current architecture assessment
-- **ARCHITECTURE_REVIEW_REPORT.md** - Architecture review with recommendations
-- **users.md** - Portal architecture breakdown with user roles
+- **ARCHITECTURE_TECHNICAL.md** - System Overview with high-level architecture diagrams showing client layer, frontend layer (Vercel/Next.js), backend layer (Django/AWS), and data layer with vendor integrations
+- **ARCHITECTURE_TECHNICAL_V2.md** - Detailed v2.0 technical architecture with hybrid microservices pattern (4 services), technology stack, service definitions, data layer, and deployment architecture
+- **COMPLIANCE_PORTAL_INSTRUCTIONS.md** - Comprehensive development instructions for the full compliance portal, including design guidelines, authentication, RBAC, and feature specifications
+- **ARCHITECTURE_ASSESSMENT.md** - Current architecture assessment and technical evaluation
+- **ARCHITECTURE_REVIEW_REPORT.md** - Detailed architecture review with recommendations
+- **users.md** - Portal architecture breakdown with user roles and access matrices
 - **docs.md** - Technical documentation and API specifications
 - **PLANS.md** - Implementation plans and project timelines
 
